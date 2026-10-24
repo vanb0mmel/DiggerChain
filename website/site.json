@@ -2,11 +2,11 @@
     "token": {
         "symbol": "DCG",
         "chainId": 4663,
-        "contractAddress": null
+        "contractAddress": "0x80516e7457d9f0cd2c8fc034dec2140b3d227b31"
     },
     "links": {
-        "x": null,
-        "ponsFamily": null,
+        "x": "https://x.com/diggerchainRH",
+        "ponsFamily": "https://ponsfamily.com/launchpad/0x80516e7457d9f0cd2c8fc034dec2140b3d227b31",
         "github": "https://github.com/vanb0mmel/DiggerChain"
     },
     "release": {

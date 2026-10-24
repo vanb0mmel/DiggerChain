@@ -35,9 +35,9 @@ Available artifacts and publication status are tracked in [alpha release prepara
 <!-- TOKEN_INFO_START -->
 ## $DCG on Robinhood Chain
 
-Chain ID: **4663** · Contract address: **Coming Soon**
+Chain ID: **4663** · Contract address: `0x80516e7457d9f0cd2c8fc034dec2140b3d227b31`
 
-X / Twitter: **Coming Soon** · PonsFamily: **Coming Soon**
+[X / Twitter](<https://x.com/diggerchainRH>) · [PonsFamily](<https://ponsfamily.com/launchpad/0x80516e7457d9f0cd2c8fc034dec2140b3d227b31>)
 <!-- TOKEN_INFO_END -->
 
 ## Build from source
