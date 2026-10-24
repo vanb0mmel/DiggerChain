@@ -15,9 +15,9 @@ Implementation completion and executed verification are recorded separately. Che
 - [x] Prepare game-only packaging and a four-target build workflow: Linux x86-64, Windows x86-64, macOS Apple silicon, and macOS Intel.
 - [x] Receive the public destination: https://github.com/vanb0mmel/DiggerChain.
 - [x] Publish the clean source snapshot and pass all four native builds. Alpha prerelease: https://github.com/vanb0mmel/DiggerChain/releases/tag/v0.1.0-alpha.1.
-- [ ] Publish actual native archives and checksums, then replace the website's Coming Soon download entries.
+- [x] Publish all four recommended native archives and checksums; update the website downloads.
 - [x] Publish the static site at https://diggerchain-alpha.fly.dev/ on one 256 MB Fly machine.
-- [ ] Complete DNS and HTTPS for diggerchain.xyz.
+- [x] Complete DNS and verified HTTPS for diggerchain.xyz and www.diggerchain.xyz.
 - [x] Add the official GitHub destination to the single website configuration.
 - [ ] Receive the token CA and official X/PonsFamily destinations from the maintainer.
 - [ ] Have the maintainer select the prepared promo images and silent gameplay films, then announce alpha.

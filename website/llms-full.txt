@@ -10,7 +10,7 @@ The website is static, with no project-operated backend, account system, analyti
 
 {{DOWNLOADS}}
 
-The current local Linux build requires glibc 2.39 or newer; broad distribution compatibility is not confirmed. A compiler is not required to run an extracted native binary. Platform build availability and runtime acceptance are separate.
+The published Linux build requires glibc 2.34 or newer, compatible with Ubuntu 22.04. The recommended Windows ZIP statically includes its C runtime. Both macOS processor architectures have separate archives. Native builds are published; additional platform runtime tests remain deferred. A compiler is not required to run an extracted native binary. Platform build availability and runtime acceptance are separate.
 
 ## $DCG and official destinations
 

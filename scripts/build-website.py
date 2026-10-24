@@ -18,7 +18,7 @@ from website_content import render_site
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "website"
 OUTPUT = ROOT / "target" / "website"
-DEFAULT_ARCHIVE = ROOT / "target/dist/diggerchain-0.1.0-alpha.1-linux-x86_64-local.zip"
+DEFAULT_ARCHIVE = ROOT / "target/dist/diggerchain-0.1.0-alpha.1-linux-x86_64.zip"
 PUBLIC_ARCHIVE = "diggerchain-linux-alpha.zip"
 
 

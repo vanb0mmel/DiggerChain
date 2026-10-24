@@ -11,4 +11,4 @@ Use a full-color UTF-8 terminal at least 90 columns by 30 rows. Extract the ZIP,
 
 Native compilation and packaging do not replace platform runtime acceptance. The maintainer has deferred additional runtime tests. Windows/macOS binaries are unsigned. Unlimited descent, combat, and additional biomes are not part of this alpha.
 
-[Website and browser demo](https://diggerchain-alpha.fly.dev/) · [Player guide](https://diggerchain-alpha.fly.dev/#docs) · [Source](https://github.com/vanb0mmel/DiggerChain)
+[Website and browser demo](https://diggerchain.xyz/) · [Player guide](https://diggerchain.xyz/#docs) · [Source](https://github.com/vanb0mmel/DiggerChain)

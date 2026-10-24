@@ -1,5 +1,7 @@
 name: Alpha builds
 
+# shortcut: release labels are fixed to alpha.1; update them before the next release tag.
+
 on:
   workflow_dispatch:
   push:

@@ -52,5 +52,10 @@
   "wordmark.svg": {
     "source": "Original bitmap lettering and character-art texture authored for DiggerChain. Inlined at build time; theme-aware and font-independent.",
     "sha256": "921f5601684eb4288b5619e9401a66992cb8c920ccecbc59970b8a2aec921c70"
+  },
+  "social-card.jpg": {
+    "source": "Original DiggerChain campaign painting; optimized JPEG with no visual edits.",
+    "sha256": "a134c2e91542375a39ac9243c6a3144676395d81e5207f92d6e3e1c2a23c610d",
+    "prompt": "social-card.jpg.json"
   }
 }

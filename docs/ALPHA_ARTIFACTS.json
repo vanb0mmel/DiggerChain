@@ -1,0 +1,50 @@
+{
+  "version": "0.1.0-alpha.1",
+  "release": "https://github.com/vanb0mmel/DiggerChain/releases/tag/v0.1.0-alpha.1",
+  "build_run": "https://github.com/vanb0mmel/DiggerChain/actions/runs/40050209650",
+  "portable_windows_run": "https://github.com/vanb0mmel/DiggerChain/actions/runs/40050664366",
+  "linux_glibc_minimum": "2.34",
+  "windows_runtime": "static in the recommended portable archive",
+  "artifacts": [
+    {
+      "platform": "linux-x86_64",
+      "file": "diggerchain-0.1.0-alpha.1-linux-x86_64.zip",
+      "bytes": 1169141,
+      "sha256": "dd5e8bc3abf173d1eaac55ec7268433440dd72c2a03b6dab70f14c0dbfc7e94e",
+      "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-linux-x86_64.zip",
+      "source_commit": "4879137",
+      "native_build": "passed",
+      "runtime_acceptance": "deferred"
+    },
+    {
+      "platform": "windows-x86_64-portable",
+      "file": "diggerchain-0.1.0-alpha.1-windows-x86_64-portable.zip",
+      "bytes": 1026613,
+      "sha256": "2f3882cc0b2bab040d4a498916c132f16ef9c8fdf898d8272ea8cd2a598ca033",
+      "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-windows-x86_64-portable.zip",
+      "source_commit": "e42a4d5",
+      "native_build": "passed",
+      "runtime_acceptance": "deferred"
+    },
+    {
+      "platform": "macos-arm64",
+      "file": "diggerchain-0.1.0-alpha.1-macos-arm64.zip",
+      "bytes": 1121643,
+      "sha256": "0f7f49aeedd4731a55b8ff75f87e9863eb7329292ba6242354b59b67be4069f7",
+      "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-arm64.zip",
+      "source_commit": "4879137",
+      "native_build": "passed",
+      "runtime_acceptance": "deferred"
+    },
+    {
+      "platform": "macos-x86_64",
+      "file": "diggerchain-0.1.0-alpha.1-macos-x86_64.zip",
+      "bytes": 1141528,
+      "sha256": "004b3119fdf95f0564fd435166586b5c40e12e7e2d055d7db2420afe67432773",
+      "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-x86_64.zip",
+      "source_commit": "4879137",
+      "native_build": "passed",
+      "runtime_acceptance": "deferred"
+    }
+  ]
+}

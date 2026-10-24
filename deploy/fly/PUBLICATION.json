@@ -1,9 +1,9 @@
 {
   "date": "2026-10-24",
   "app": "diggerchain-alpha",
-  "url": "https://diggerchain-alpha.fly.dev/",
+  "url": "https://diggerchain.xyz/",
   "selected_domain": "diggerchain.xyz",
-  "domain_status": "DNS update pending; certificates requested for apex and www.",
+  "domain_status": "Apex and www resolve to the Fly addresses; both certificates are issued, verified and active.",
   "machine_id": "8654e06f746548",
   "region": "ams",
   "vm": {
@@ -15,36 +15,57 @@
   "min_running": 0,
   "shared_ipv4": "66.241.125.219",
   "ipv6": "2a09:8280:1::1c9:6a18:0",
-  "image": "registry.fly.io/diggerchain-alpha:deployment-01M5NQR4FR2HJP4DAV63BBMH4M",
-  "image_digest": "sha256:4e2eba3710040ec3116f51d2728461cbf014dbb2cf2b71b104979effc52e4fbd",
+  "image": "registry.fly.io/diggerchain-alpha:deployment-01M5NS63D5QZGAGBS45BYEWTNX",
+  "image_digest": "sha256:66286e2ca8081e8dcc1309bf9d3b1b4e96437184e077af1dfed949fcdaaa70e4",
   "public_http_observations": [
     {
-      "url": "https://diggerchain-alpha.fly.dev/",
+      "url": "https://diggerchain.xyz/",
       "status": 200,
       "content_type": "text/html",
-      "bytes": 48133,
-      "sha256": "5f634584bc7efb5306dbf214a4a873cfd0cd49736e3bfc49eae0e048ae1ff758"
+      "bytes": 50134,
+      "sha256": "870c01c509f15677c543f292f1d62cdde09a4d8b31ae370ab3e64b71cc2283eb"
     },
     {
-      "url": "https://diggerchain-alpha.fly.dev/llms.txt",
+      "url": "https://www.diggerchain.xyz/",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 50134,
+      "sha256": "870c01c509f15677c543f292f1d62cdde09a4d8b31ae370ab3e64b71cc2283eb"
+    },
+    {
+      "url": "https://diggerchain.xyz/site.json",
+      "status": 200,
+      "content_type": "application/json",
+      "bytes": 1491,
+      "sha256": "33e26018fa22c3a97d5de134254bc642bfca6328bfec4ebbe7968547aa09bb98"
+    },
+    {
+      "url": "https://diggerchain.xyz/llms-full.txt",
       "status": 200,
       "content_type": "text/plain",
-      "bytes": 2125,
-      "sha256": "6caadde7169bb4e1cf0185ba4adab5228c0858ff696e01d185897652439a49b1"
+      "bytes": 18792,
+      "sha256": "d590c9743eefef18d5699c3e6f163b33e58eda52090b4759b20c50635b284dc8"
     },
     {
-      "url": "https://diggerchain-alpha.fly.dev/pkg/diggerchain_web_bg.wasm",
+      "url": "https://diggerchain.xyz/pkg/diggerchain_web_bg.wasm",
       "status": 200,
       "content_type": "application/wasm",
       "bytes": 66072,
       "sha256": "5f30ef0184103bcfbb802aca486f8bad3cb8910aa008aede46eae3fb0f114f70"
     },
     {
-      "url": "https://diggerchain-alpha.fly.dev/downloads/diggerchain-linux-alpha.zip.sha256",
+      "url": "https://diggerchain.xyz/downloads/diggerchain-linux-alpha.zip",
       "status": 200,
-      "content_type": "application/octet-stream",
-      "bytes": 94,
-      "sha256": "d84a053275fbfc3a44200ba54396676a566a2b1ec3e7dc511e48c6cb6d98a27d"
+      "content_type": "application/zip",
+      "bytes": 1169141,
+      "sha256": "dd5e8bc3abf173d1eaac55ec7268433440dd72c2a03b6dab70f14c0dbfc7e94e"
+    },
+    {
+      "url": "https://diggerchain.xyz/assets/social-card.jpg",
+      "status": 200,
+      "content_type": "image/jpeg",
+      "bytes": 496435,
+      "sha256": "a134c2e91542375a39ac9243c6a3144676395d81e5207f92d6e3e1c2a23c610d"
     }
   ],
   "verification_scope": "Publication reachability and MIME responses only; no new browser or game test campaign."

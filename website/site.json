@@ -19,18 +19,18 @@
             },
             {
                 "platform": "Windows x86-64",
-                "url": null,
-                "checksum": null
+                "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-windows-x86_64-portable.zip",
+                "checksum": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-windows-x86_64-portable.zip.sha256"
             },
             {
                 "platform": "macOS Apple silicon",
-                "url": null,
-                "checksum": null
+                "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-arm64.zip",
+                "checksum": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-arm64.zip.sha256"
             },
             {
                 "platform": "macOS Intel",
-                "url": null,
-                "checksum": null
+                "url": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-x86_64.zip",
+                "checksum": "https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-x86_64.zip.sha256"
             }
         ]
     }

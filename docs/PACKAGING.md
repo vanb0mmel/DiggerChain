@@ -4,6 +4,10 @@ For the public alpha, package only the game with `python3 scripts/package_releas
 
 Status: scripts and manual CI workflow are prepared. The assistant builds the local Linux candidate and performs static checks; the user owns execution of tests and platform smoke checks. No remote repository, hosted workflow run, public release, or mainnet deployment is configured by this file.
 
+## Published alpha, 2026-10-24
+
+The public [alpha prerelease](https://github.com/vanb0mmel/DiggerChain/releases/tag/v0.1.0-alpha.1) includes Linux x86-64, Windows x86-64, macOS Apple silicon, and macOS Intel archives with checksums. The recommended Windows file ends in `-portable.zip` and statically includes its C runtime. Build and package jobs passed; additional platform runtime tests remain deferred. Exact sizes, hashes, and build runs are recorded in [ALPHA_ARTIFACTS.json](ALPHA_ARTIFACTS.json). No private draft history, saves, setup material, or render caches were published.
+
 ## Local candidate, 2026-10-22
 
 The human-delver build is `target/dist/diggerchain-candidate-linux-local-human.zip` (3,010,547 bytes), with SHA-256 `6bb369a65c711712a3622bd38764bbee34fec015883e736d23f6ba2e923cbf5a`. It contains the Linux game, separate proof executable, current installation instructions, dependency notices, and internal checksums. It is a local-host build, not a Windows/macOS build or published release.

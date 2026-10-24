@@ -31,7 +31,7 @@ Explain the game clearly, let visitors try it, and help them start playing. The 
 - The game works offline after installation. Its browser demo needs a browser renderer; the native terminal executable is not embedded directly.
 - Website copy, documentation, code, and comments are English.
 - The user owns acceptance and has deferred further tests to accelerate launch. Do not report unrun checks as passed.
-- Hosting uses Fly.io, with diggerchain.xyz as the selected domain and vanb0mmel/DiggerChain as the public repository. Final token configuration and platform artifact publication remain open.
+- Hosting uses Fly.io, with diggerchain.xyz as the selected domain and vanb0mmel/DiggerChain as the public repository. HTTPS is active and platform artifacts are published. Final token/X/PonsFamily configuration remains open.
 
 ## Brand Commitments
 
@@ -46,7 +46,7 @@ Explain the game clearly, let visitors try it, and help them start playing. The 
 
 ## Evidence on Hand
 
-The repository contains the terminal game, the shared Rust simulation, a local Linux candidate archive, a fixed-parameter proof tool, testnet contracts, and recorded checks. Full registration/payout and Windows/macOS builds are not confirmed. Website claims must reflect those limits.
+The repository contains the terminal game, the shared Rust simulation, published four-platform alpha archives, a fixed-parameter proof tool, testnet contracts, and recorded checks. Full registration/payout and additional platform runtime acceptance are not confirmed. Website claims must reflect those limits.
 
 ## Product Principles
 

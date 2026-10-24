@@ -1,7 +1,7 @@
 <p align="center"><img src="website/assets/candle.png" alt="DiggerChain candle" width="72"></p>
 <h1 align="center">DiggerChain</h1>
 <p align="center"><strong>A mining adventure in your terminal.</strong></p>
-<p align="center"><a href="https://diggerchain-alpha.fly.dev/#demo">Play the demo</a> · <a href="https://diggerchain-alpha.fly.dev/#docs/download">Download</a> · <a href="https://diggerchain-alpha.fly.dev/#docs">Player guide</a> · <a href="https://diggerchain-alpha.fly.dev/#lore">Read the lore</a></p>
+<p align="center"><a href="https://diggerchain.xyz/#demo">Play the demo</a> · <a href="https://diggerchain.xyz/#docs/download">Download</a> · <a href="https://diggerchain.xyz/#docs">Player guide</a> · <a href="https://diggerchain.xyz/#lore">Read the lore</a></p>
 
 ![A lantern-bearing delver and the mysterious keeper beneath an immense forest castle](docs/assets/castle-banner.webp)
 
@@ -13,13 +13,22 @@ DiggerChain is a native terminal game with colored glyphs, half-block sprites, w
 
 The alpha is deliberately small: **three seeded castle floors, 512 successful actions, and automatic saves**. Backtrack through portals, replenish your digging charge, and keep what you have already uncovered. The generator varies a fixed chamber layout; there are no enemies or combat in this expedition. Unlimited descent and additional biomes are future work.
 
-**Alpha has no token payouts.** The planned $DCG launch on Robinhood Chain and future gameplay rewards are separate milestones. See the [public roadmap](https://diggerchain-alpha.fly.dev/#roadmap).
+**Alpha has no token payouts.** The planned $DCG launch on Robinhood Chain and future gameplay rewards are separate milestones. See the [public roadmap](https://diggerchain.xyz/#roadmap).
 
 ![Real native terminal gameplay from the alpha expedition](docs/assets/gameplay.webp)
 
 ## Download and play
 
-Download the archive for your platform from the website's **Docs → Get the game** or the project's release assets when published. Extract it and run `diggerchain` (`diggerchain.exe` on Windows). No compiler, wallet, proving key, or network connection is needed to play. See [alpha installation](docs/ALPHA_INSTALL.md) for controls, saves, and the external-agent interface.
+Choose a native archive from [alpha 0.1.0-alpha.1](https://github.com/vanb0mmel/DiggerChain/releases/tag/v0.1.0-alpha.1). Each has a matching SHA-256 file.
+
+| Platform | Download |
+| --- | --- |
+| Linux x86-64 | [ZIP](https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-linux-x86_64.zip) |
+| Windows x86-64 | [Portable ZIP](https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-windows-x86_64-portable.zip) |
+| macOS Apple silicon | [ZIP](https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-arm64.zip) |
+| macOS Intel | [ZIP](https://github.com/vanb0mmel/DiggerChain/releases/download/v0.1.0-alpha.1/diggerchain-0.1.0-alpha.1-macos-x86_64.zip) |
+
+Extract it and run `diggerchain` (`diggerchain.exe` on Windows). No compiler, wallet, proving key, or network connection is needed to play. Linux needs glibc 2.34 or newer, such as Ubuntu 22.04. The recommended Windows build includes its C runtime. See [alpha installation](docs/ALPHA_INSTALL.md) for controls, saves, and the external-agent interface.
 
 Available artifacts and publication status are tracked in [alpha release preparation](docs/ALPHA_RELEASE.md). Unbuilt platforms stay marked unavailable.
 
