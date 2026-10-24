@@ -177,8 +177,7 @@ class GuideMarkdown(HTMLParser):
         return re.sub(r"\n{3,}", "\n\n", text).strip()
 
 
-def render_site(output):
-    config = json.loads((SOURCE / "site.json").read_text(encoding="utf-8"))
+def validate_config(config):
     token = config["token"]
     if token["symbol"] != "DCG" or token["chainId"] != 4663:
         raise ValueError("The website token must be DCG on Robinhood Chain 4663.")
@@ -188,8 +187,15 @@ def render_site(output):
     for url in config["links"].values():
         if url is not None:
             parsed = urlsplit(url)
-            if parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password:
+            if (parsed.scheme != "https" or not parsed.hostname or parsed.username or parsed.password
+                    or any(character.isspace() or character in "<>" for character in url)):
                 raise ValueError("Public links must be complete HTTPS URLs or null.")
+
+
+def render_site(output):
+    config = json.loads((SOURCE / "site.json").read_text(encoding="utf-8"))
+    validate_config(config)
+    address = config["token"]["contractAddress"]
     lore = json.loads((SOURCE / "content/lore.json").read_text(encoding="utf-8"))
     roadmap = json.loads((SOURCE / "content/roadmap.json").read_text(encoding="utf-8"))
     values = {

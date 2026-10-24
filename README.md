@@ -32,6 +32,14 @@ Extract it and run `diggerchain` (`diggerchain.exe` on Windows). No compiler, wa
 
 Available artifacts and publication status are tracked in [alpha release preparation](docs/ALPHA_RELEASE.md). Unbuilt platforms stay marked unavailable.
 
+<!-- TOKEN_INFO_START -->
+## $DCG on Robinhood Chain
+
+Chain ID: **4663** · Contract address: **Coming Soon**
+
+X / Twitter: **Coming Soon** · PonsFamily: **Coming Soon**
+<!-- TOKEN_INFO_END -->
+
 ## Build from source
 
 - Rust 1.89 or newer with Cargo, rustfmt, and Clippy (current stable recommended).

@@ -31,3 +31,13 @@ The app already exists; do not run `launch` again. Keep the supplied configurati
 The hostname and deployment outcome must be recorded from the actual CLI result, not inferred from the proposed name. For any future domain, the maintainer supplies its name; use `flyctl certs add DOMAIN` and copy the exact DNS records returned by Fly into that domain's DNS. Do not replace unrelated DNS records. Certificate issuance and domain routing are not complete until their real status is confirmed.
 
 Reference: [Fly app configuration](https://docs.fly.io/reference/configuration), [Fly deployment CLI](https://docs.fly.io/flyctl/cmd/fly_deploy), and [custom-domain certificates](https://docs.fly.io/flyctl/cmd/fly_certs_add).
+
+## Fast token publication
+
+Once the maintainer supplies all three official values, run from the monorepo:
+
+```sh
+python3 scripts/publish_token.py --ca OFFICIAL_CA --x 'OFFICIAL_HTTPS_X_URL' --pons 'OFFICIAL_HTTPS_PONS_URL'
+```
+
+The command validates the supplied values, updates the single website configuration and README token block, and rebuilds static pages using the existing WASM module and native archives. GitHub push and Fly deployment run in parallel. A final HTTPS read confirms the live configuration; logs are retained in `target/token-publication`. The command rejects existing edits to the two source files, commits only those files, and reports partial publication failures explicitly. It does not start game builds, tests, proof generation, or wallet operations. The 2–3 minute launch window is a target, not a guarantee of external service availability.
