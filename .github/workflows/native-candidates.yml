@@ -33,6 +33,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       RAYON_NUM_THREADS: 2
+      RUSTFLAGS: ${{ runner.os == 'Windows' && '-C target-feature=+crt-static' || '' }}
     steps:
       - uses: actions/checkout@v7
       - name: Install Rust

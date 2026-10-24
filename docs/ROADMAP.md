@@ -14,7 +14,7 @@ Implementation completion and executed verification are recorded separately. Che
 - [x] Receive the maintainer's website acceptance, including Lore, Roadmap, Docs, Demo, Links, and the final bitmap-title/art refinement. Preview is stopped.
 - [x] Prepare game-only packaging and a four-target build workflow: Linux x86-64, Windows x86-64, macOS Apple silicon, and macOS Intel.
 - [x] Receive the public destination: https://github.com/vanb0mmel/DiggerChain.
-- [ ] Publish the clean source snapshot and trigger the native build workflow.
+- [x] Publish the clean source snapshot and pass all four native builds. Alpha prerelease: https://github.com/vanb0mmel/DiggerChain/releases/tag/v0.1.0-alpha.1.
 - [ ] Publish actual native archives and checksums, then replace the website's Coming Soon download entries.
 - [x] Publish the static site at https://diggerchain-alpha.fly.dev/ on one 256 MB Fly machine.
 - [ ] Complete DNS and HTTPS for diggerchain.xyz.

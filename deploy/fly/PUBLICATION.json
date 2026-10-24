@@ -1,0 +1,51 @@
+{
+  "date": "2026-10-24",
+  "app": "diggerchain-alpha",
+  "url": "https://diggerchain-alpha.fly.dev/",
+  "selected_domain": "diggerchain.xyz",
+  "domain_status": "DNS update pending; certificates requested for apex and www.",
+  "machine_id": "8654e06f746548",
+  "region": "ams",
+  "vm": {
+    "cpus": 1,
+    "cpu_kind": "shared",
+    "memory_mb": 256
+  },
+  "auto_stop": "stop",
+  "min_running": 0,
+  "shared_ipv4": "66.241.125.219",
+  "ipv6": "2a09:8280:1::1c9:6a18:0",
+  "image": "registry.fly.io/diggerchain-alpha:deployment-01M5NQR4FR2HJP4DAV63BBMH4M",
+  "image_digest": "sha256:4e2eba3710040ec3116f51d2728461cbf014dbb2cf2b71b104979effc52e4fbd",
+  "public_http_observations": [
+    {
+      "url": "https://diggerchain-alpha.fly.dev/",
+      "status": 200,
+      "content_type": "text/html",
+      "bytes": 48133,
+      "sha256": "5f634584bc7efb5306dbf214a4a873cfd0cd49736e3bfc49eae0e048ae1ff758"
+    },
+    {
+      "url": "https://diggerchain-alpha.fly.dev/llms.txt",
+      "status": 200,
+      "content_type": "text/plain",
+      "bytes": 2125,
+      "sha256": "6caadde7169bb4e1cf0185ba4adab5228c0858ff696e01d185897652439a49b1"
+    },
+    {
+      "url": "https://diggerchain-alpha.fly.dev/pkg/diggerchain_web_bg.wasm",
+      "status": 200,
+      "content_type": "application/wasm",
+      "bytes": 66072,
+      "sha256": "5f30ef0184103bcfbb802aca486f8bad3cb8910aa008aede46eae3fb0f114f70"
+    },
+    {
+      "url": "https://diggerchain-alpha.fly.dev/downloads/diggerchain-linux-alpha.zip.sha256",
+      "status": 200,
+      "content_type": "application/octet-stream",
+      "bytes": 94,
+      "sha256": "d84a053275fbfc3a44200ba54396676a566a2b1ec3e7dc511e48c6cb6d98a27d"
+    }
+  ],
+  "verification_scope": "Publication reachability and MIME responses only; no new browser or game test campaign."
+}

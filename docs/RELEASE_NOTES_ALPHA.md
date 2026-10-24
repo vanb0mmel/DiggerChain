@@ -3,7 +3,7 @@ A mining adventure in your terminal. Explore three seeded floors of a castle hid
 - Play offline with automatic saves and a 512-action expedition limit.
 - Switch between colored glyphs and half-block sprites. Fog stays enabled; there is no camera shake.
 - Drive the same game through a plain-text headless interface with your own external agent.
-- Choose Linux x86-64, Windows x86-64, macOS Apple silicon, or macOS Intel. Each ZIP includes installation instructions and license notices; matching SHA-256 files identify the archives.
+- Choose Linux x86-64, Windows x86-64, macOS Apple silicon, or macOS Intel. For Windows, prefer the `windows-x86_64-portable` ZIP: its C runtime is included statically. The original Windows ZIP requires Microsoft's Visual C++ runtime. Each ZIP includes installation instructions and license notices; matching SHA-256 files identify the archives.
 
 **Alpha has no token payouts and requires no wallet or proof tool.** The planned $DCG token launch and future gameplay rewards are separate milestones.
 

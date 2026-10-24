@@ -15,7 +15,7 @@ Alpha has no direct token payouts. Players do not install a proof tool or connec
 
 ## Remaining publication inputs
 
-- GitHub destination received: https://github.com/vanb0mmel/DiggerChain. Publish a clean source snapshot, then push the alpha tag to start native builds and the prerelease job. Review actual results before linking artifacts.
+- Source is published at https://github.com/vanb0mmel/DiggerChain. All four native builds and the prerelease job passed: https://github.com/vanb0mmel/DiggerChain/releases/tag/v0.1.0-alpha.1. No tests were run by these jobs. A portable Windows variant is being added with a static C runtime.
 - Publish native ZIPs and their matching checksums as release assets. Replace Coming Soon only for artifacts that exist. A successful cross-compilation does not establish runtime acceptance on that platform.
 - Fly login and initial deployment are complete. The app is `diggerchain-alpha`, one shared CPU and 256 MB RAM, with idle autostop. The maintainer is configuring Dynadot DNS; complete certificate issuance and record the actual domain status.
 - The maintainer launches $DCG and supplies its CA and PonsFamily URL, plus the official X/GitHub destinations. Enter them in `website/site.json` and rebuild; do not substitute a wallet address or a testnet contract.
@@ -25,6 +25,6 @@ Alpha has no direct token payouts. Players do not install a proof tool or connec
 
 The Linux release compilation, archive generation, and static website build completed locally. Native gameplay was recorded only for the requested promo footage, using a task-owned practice save. This is production capture, not a new regression suite or cross-platform acceptance run.
 
-The maintainer owns tests and has deferred additional runs. Newly prepared focused packaging/download tests are available for later execution; they have not been run by the assistant. Existing recorded results remain unchanged. Windows/macOS artifacts, a public GitHub release, custom-domain DNS, and token addresses are not complete until actual results are recorded.
+The maintainer owns tests and has deferred additional runs. Newly prepared focused packaging/download tests are available for later execution; they have not been run by the assistant. Existing recorded results remain unchanged. Windows/macOS archives and the public prerelease now exist; platform runtime acceptance remains deferred. Custom-domain DNS and token addresses are recorded only when their actual results exist.
 
 The current local Linux executable requires glibc 2.39 or newer, as read from its ELF version requirements. Prefer the Ubuntu 22.04 workflow artifact for public Linux distribution after it exists. Unsigned macOS and Windows binaries may trigger operating-system publisher checks; no signing identity has been supplied.

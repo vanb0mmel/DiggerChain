@@ -1,0 +1,27 @@
+name: Portable Windows alpha
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: [.github/workflows/windows-portable.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+    env:
+      RUSTFLAGS: -C target-feature=+crt-static
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v7
+      - run: rustup toolchain install stable --profile minimal --target x86_64-pc-windows-msvc
+      - run: cargo fetch --locked --target x86_64-pc-windows-msvc
+      - run: cargo build --release --locked -j 2 -p diggerchain-terminal --target x86_64-pc-windows-msvc
+      - name: Package portable alpha
+        run: python scripts/package_release.py --game target/x86_64-pc-windows-msvc/release/diggerchain.exe --label diggerchain-0.1.0-alpha.1-windows-x86_64-portable --target x86_64-pc-windows-msvc
+      - name: Add portable Windows download
+        shell: bash
+        run: gh release upload v0.1.0-alpha.1 target/dist/*.zip target/dist/*.sha256 && gh release edit v0.1.0-alpha.1 --notes-file docs/RELEASE_NOTES_ALPHA.md
