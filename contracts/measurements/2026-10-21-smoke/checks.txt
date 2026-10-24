@@ -1,0 +1,127 @@
+   Compiling diggerchain-core v0.1.0 (/home/goobadooba/Загрузки/Project82/DCG/crates/diggerchain-core)
+   Compiling diggerchain-lab v0.1.0 (/home/goobadooba/Загрузки/Project82/DCG/crates/diggerchain-lab)
+   Compiling diggerchain-terminal v0.1.0 (/home/goobadooba/Загрузки/Project82/DCG/crates/diggerchain-terminal)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.71s
+     Running unittests src/lib.rs (target/debug/deps/diggerchain_core-bbde52d35722e770)
+
+running 14 tests
+test expedition::tests::empty_charge_allows_retreat_and_portal_travel ... ok
+test expedition::tests::demo_preserves_digging_and_collections_across_revisits ... ok
+test expedition::tests::full_charge_keeps_flask_and_partial_refills_are_capped ... ok
+test expedition::tests::insufficient_charge_does_not_break_rock ... ok
+test expedition::tests::rejected_actions_are_atomic_and_wait_does_not_refill ... ok
+test record::tests::identity_uses_sha256_and_actions_have_one_encoding ... ok
+test record::tests::history_restores_a_generated_expedition_and_rejects_corruption ... ok
+test tests::invalid_moves_do_not_advance_the_world ... ok
+test tests::doors_block_visibility_until_opened ... ok
+test vault::tests::portals_work_without_charge_and_full_flasks_stay_available ... ok
+test vault::tests::blocked_actions_and_insufficient_charge_are_atomic ... ok
+test tests::crystals_are_collected_only_once ... ok
+test vault::tests::seeded_routes_revisit_every_floor_without_resetting_items ... ok
+test tests::the_pilot_can_be_completed_through_normal_actions ... ok
+
+test result: ok. 14 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running unittests src/main.rs (target/debug/deps/diggerchain_lab-08c04b4533eba115)
+
+running 2 tests
+test tests::line_protocol_preserves_state_on_unknown_commands_and_observation ... ok
+test tests::trace_explains_the_complete_demo_without_claiming_to_be_a_proof ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (target/debug/deps/diggerchain-94d28590ca43f790)
+
+running 10 tests
+test render::art::tests::every_sprite_is_an_eight_by_eight_mask ... ok
+test render::screen::tests::an_unchanged_frame_does_not_write_to_the_terminal ... ok
+test render::tests::the_camera_holds_still_inside_its_safe_area ... ok
+test wallet::tests::public_page_rejects_foreign_hosts_and_file_or_write_routes ... ok
+test save::tests::saves_lock_resume_and_archive_without_losing_the_previous_run ... ok
+test expedition::tests::protocol_preserves_fog_and_secrets_and_restores_the_saved_history ... ok
+test expedition::tests::decoration_matches_simulation_collision_and_both_views_render ... ok
+test agent::tests::observations_do_not_disclose_hidden_crystals ... ok
+test render::tests::both_views_render_at_the_minimum_terminal_size ... ok
+test agent::tests::the_protocol_is_json_only_and_look_does_not_advance_time ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.03s
+
+   Doc-tests diggerchain_core
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Compiling diggerchain-proof-lab v0.1.0 (/home/goobadooba/Загрузки/Project82/DCG/experiments/proof-lab)
+    Finished `release` profile [optimized] target(s) in 13.81s
+     Running unittests src/lib.rs (experiments/proof-lab/target/release/deps/diggerchain_proof_lab-d3b79136c6a2a3a8)
+
+running 16 tests
+test circuit::tests::absent_flasks_and_portals_only_reject_the_actions_that_require_them ... ok
+test circuit::tests::fabricated_public_results_are_rejected ... ok
+test circuit::tests::illegal_actions_cannot_be_hidden_by_a_valid_final_result ... ok
+test circuit::tests::mirrored_routes_and_longer_backtracking_match_native_results ... ok
+test circuit::tests::range_checks_bind_seed_and_context_to_the_declared_widths ... ok
+test circuit::tests::replenishment_masks_accept_constant_inputs ... ok
+test circuit::tests::setup_and_mirrored_witness_generate_the_same_constraint_matrices ... ok
+test evm::tests::infinity_uses_the_evm_zero_encoding ... ok
+test reward::tests::authenticated_history_binds_sha256_identity_and_seed ... ok
+test reward::tests::authenticated_setup_and_proving_have_identical_matrices ... ok
+test reward::tests::release_context_has_canonical_widths_and_practice_runs_are_rejected ... ok
+test vault::tests::generated_results_cannot_be_fabricated ... ok
+test vault::tests::generated_rocks_and_flasks_cannot_be_used_illegally ... ok
+test vault::tests::generated_seed_and_context_have_canonical_widths ... ok
+test vault::tests::generated_setup_and_proving_use_identical_constraint_matrices ... ok
+test vault::tests::generated_transitions_match_native_results_for_different_seeds ... ok
+
+test result: ok. 16 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 5.84s
+
+     Running unittests src/release.rs (experiments/proof-lab/target/release/deps/diggerchain_proof-9146f36b8d376de3)
+
+running 1 test
+test tests::address_parser_rejects_zero_overflow_and_non_ascii ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/main.rs (experiments/proof-lab/target/release/deps/diggerchain_proof_lab-8cb0e90f23605003)
+
+running 1 test
+test tests::peak_memory_uses_the_high_water_mark_and_preserves_missing_data ... ok
+
+test result: ok. 1 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests diggerchain_proof_lab
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+No files changed, compilation skipped
+
+Ran 7 tests for test/Rewards.t.sol:RewardsTest
+[PASS] testDuplicateExpeditionIsRejectedAcrossPlayersAndEpochs() (gas: 176505)
+[PASS] testEmptyEpochAndRoundingCannotIncreaseIssuance() (gas: 424669)
+[PASS] testInvalidProofDoesNotConsumeAnExpedition() (gas: 240626)
+[PASS] testNoncanonicalIdentityAndOutOfRangeResultsAreRejected() (gas: 153650)
+[PASS] testProportionalPayoutsNeedNoFinalizer() (gas: 536064)
+[PASS] testTokenTransfersAndInvalidConfiguration() (gas: 482406)
+[PASS] testWrongRecipientDomainRulesAndEpochAreRejected() (gas: 181903)
+Suite result: ok. 7 passed; 0 failed; 0 skipped; finished in 668.66µs (1.57ms CPU time)
+
+Ran 1 test suite in 1.98ms (668.66µs CPU time): 7 tests passed, 0 failed, 0 skipped (7 total tests)
+test_packaging_requires_a_matching_player_page_and_excludes_private_files (test_package_parameters.ParametersPackageTest.test_packaging_requires_a_matching_player_page_and_excludes_private_files) ... ok
+test_archive_contains_only_explicit_binaries_instructions_and_checksums (test_package_release.PackageTest.test_archive_contains_only_explicit_binaries_instructions_and_checksums) ... ok
+test_prepares_public_package_and_rejects_changed_key (test_reward_wallet.RewardWalletTest.test_prepares_public_package_and_rejects_changed_key) ... ok
+test_rejects_an_experiment_or_wrong_reward_abi (test_reward_wallet.RewardWalletTest.test_rejects_an_experiment_or_wrong_reward_abi) ... ok
+test_rejects_out_of_bounds_immutable_ranges_and_invalid_account (test_reward_wallet.RewardWalletTest.test_rejects_out_of_bounds_immutable_ranges_and_invalid_account) ... ok
+test_mismatched_proof_report_is_rejected (test_testnet_check.TestnetPackageTests.test_mismatched_proof_report_is_rejected) ... ok
+test_noncanonical_or_malformed_words_are_rejected (test_testnet_check.TestnetPackageTests.test_noncanonical_or_malformed_words_are_rejected) ... ok
+test_static_abi_encoding_and_altered_score_are_bound (test_testnet_check.TestnetPackageTests.test_static_abi_encoding_and_altered_score_are_bound) ... ok
+test_unverified_packages_are_rejected (test_testnet_check.TestnetPackageTests.test_unverified_packages_are_rejected) ... ok
+test_wrong_abi_or_unlinked_bytecode_is_rejected (test_testnet_check.TestnetPackageTests.test_wrong_abi_or_unlinked_bytecode_is_rejected) ... ok
+test_wrong_network_is_rejected (test_testnet_check.TestnetPackageTests.test_wrong_network_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 0.014s
+
+OK

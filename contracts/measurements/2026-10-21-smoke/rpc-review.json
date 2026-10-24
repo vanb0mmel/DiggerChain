@@ -1,0 +1,56 @@
+{
+  "rpc_url": "https://rpc.testnet.chain.robinhood.com/rpc",
+  "observed_at_utc": "2026-10-21T18:52:54.221264+00:00",
+  "checks": {
+    "chain_id": 46630,
+    "latest_block": {
+      "hash": "0xa7254ff905dd386f81acd0ed9d543f82ecec2a530f842697a683e52efa1c110c",
+      "number": "0x85c32c7",
+      "timestamp": "0x6ad90a05"
+    },
+    "verifier_deployment": {
+      "transactionHash": "0xfc375c612f7a3dcc202980ea28b21abd2a5fb5c2c781c8cd813a71a348b0f222",
+      "status": "0x1",
+      "blockNumber": "0x85c142f",
+      "contractAddress": "0x45f4e6c42e8a71d495d5f23793ad949a081d7364",
+      "gasUsed": "0xac056",
+      "effectiveGasPrice": "0x989680"
+    },
+    "rewards_deployment": {
+      "transactionHash": "0x8d69add2f233329b90fa168a73926a7994efe108b23fc23a3c91da11e6169124",
+      "status": "0x1",
+      "blockNumber": "0x85c1487",
+      "contractAddress": "0x7fb642e5afc33696daf0481401f0927abec309ad",
+      "gasUsed": "0x118e49",
+      "effectiveGasPrice": "0x989680"
+    },
+    "starts_at": 1792607740,
+    "duration": 300,
+    "epoch_count": 8,
+    "budget": 1000000000000000000000,
+    "total_supply": 8000000000000000000000,
+    "wallet_balance": 0,
+    "escrow_balance": 8000000000000000000000,
+    "expedition_used": 0,
+    "wallet_score_epoch_1": 0,
+    "wallet_claimed_epoch_1": 0,
+    "total_score_epoch_0": 0,
+    "total_score_epoch_1": 0,
+    "total_score_epoch_2": 0,
+    "total_score_epoch_3": 0,
+    "total_score_epoch_4": 0,
+    "total_score_epoch_5": 0,
+    "total_score_epoch_6": 0,
+    "total_score_epoch_7": 0,
+    "verifier_runtime": {
+      "bytes": 3014,
+      "sha256": "ad162f19f2385cd746013dd14399e202a40f4e665fa6988bafead888ca87ca45",
+      "matches_candidate": true
+    },
+    "rewards_runtime": {
+      "bytes": 4541,
+      "sha256": "d4816fd2005c73d6ce29df0bc6bbbd3e3518da438d3eb643d3c790f8bcdcaf00",
+      "matches_candidate": true
+    }
+  }
+}

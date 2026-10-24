@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>DiggerChain rewards</title>
+<style>
+body{max-width:1000px;margin:2rem auto;padding:0 1rem;background:#10131b;color:#d3d8e3;font:16px/1.5 system-ui}h1{color:#deba74}button,input{font:inherit;padding:.5rem;margin:.3rem 0}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}input[type=text]{width:100%;box-sizing:border-box;background:#1b2230;color:#e5e9ef;border:1px solid #566078}label{display:block;margin-top:1rem}pre{white-space:pre-wrap;overflow-wrap:anywhere;background:#1b2230;padding:1rem}small{color:#aab5c7}.row{display:flex;gap:.5rem;flex-wrap:wrap}a{color:#8ec6ed}
+</style>
+<h1 id="heading">DiggerChain rewards</h1>
+<p id="network"></p>
+<p id="config"></p>
+<small>Fixed parameters use the accepted single-operator setup assumption. This page tests a candidate; it does not publish a live economy.</small>
+<pre id="identity"></pre>
+<button id="connect">1. Connect wallet</button>
+<span id="wallet">Not connected</span>
+<label for="verifier">Verifier address</label>
+<input id="verifier" type="text" spellcheck="false" autocomplete="off" placeholder="Deploy below, or paste the existing matching verifier">
+<button id="deployVerifier">2. Deploy verifier</button>
+<label for="rewards">Token / rewards contract address</label>
+<input id="rewards" type="text" spellcheck="false" autocomplete="off" placeholder="Deploy below, or paste the existing matching rewards contract">
+<div class="row">
+<button id="deployRewards">3. Deploy test token and rewards</button>
+<button id="inspect">Refresh contract and epoch</button>
+<button id="context">4. Prepare offline proof command</button>
+</div>
+<pre id="status">Connect a wallet, then deploy or enter the two contract addresses.</pre>
+<label for="shell">Command format</label>
+<select id="shell"><option value="posix">Linux / macOS shell</option><option value="powershell">Windows PowerShell</option></select>
+<pre id="command">Your private save stays on this computer. This page never reads it.</pre>
+<label for="proof">5. Load the public evm.json from your proof output directory</label>
+<input id="proof" type="file" accept=".json,application/json">
+<div class="row">
+<button id="verify">Check proof only (no registration)</button>
+<button id="register">6. Register score with a wallet transaction</button>
+</div>
+<p>A proof check does not register a score. Wait for a confirmed registration transaction before claiming after the epoch ends.</p>
+<label for="claimEpoch">Epoch to claim after its deadline</label>
+<input id="claimEpoch" type="number" min="0" step="1" value="0">
+<button id="claim">7. Claim this wallet's epoch reward</button>
+<div class="row">
+<button id="pending">Check pending transaction</button>
+<button id="download">Download public result and receipts</button>
+</div>
+<label id="recoveryCheck"><input id="manualReceipt" type="checkbox">Recovery check: leave the next submitted transaction for a manual receipt check</label>
+<pre id="log" role="status" aria-live="polite">Ready. No transaction has been requested.</pre>
+<script>
+"use strict";
+const payload = {{PAYLOAD}};
+const CHAIN = "0x"+payload.chainId.toString(16);
+const FQ = 21888242871839275222246405745257275088696311157297823662689037894645226208583n;
+const FR = 21888242871839275222246405745257275088548364400416034343698204186575808495617n;
+const $ = id => document.getElementById(id);
+const storageKey = `diggerchain-rewards-v1:${payload.chainId}:${payload.verifyingKeySha256}:${payload.expectedAccount?.toLowerCase() || "participants"}`;
+const state = {provider:null,account:null,busy:false,pending:null,proof:null,recoveredPending:false};
+let report = {scheme:"groth16-bn254-reward-v1",chain_id:payload.chainId,account:payload.expectedAccount,
+  participants:[],verifying_key_sha256:payload.verifyingKeySha256,manifest_sha256:payload.manifestSha256,transactions:[]};
+$("verifier").value=payload.verifierAddress || "";$("rewards").value=payload.rewardsAddress || "";
+if(payload.playerMode){$("deployVerifier").hidden=true;$("deployRewards").hidden=true;$("recoveryCheck").hidden=true;}
+function log(text){$("log").textContent += "\n" + text;}
+function saveRecovery(){
+  try {localStorage.setItem(storageKey,JSON.stringify({report,pending:state.pending,verifier:$("verifier").value,rewards:$("rewards").value}));}
+  catch {log("Browser recovery storage is unavailable. Keep the displayed transaction hashes before closing this page.");}
+}
+try {
+  const saved = JSON.parse(localStorage.getItem(storageKey) || "null");
+  if(saved && saved.report?.chain_id===payload.chainId && saved.report?.manifest_sha256 === payload.manifestSha256 && Array.isArray(saved.report.transactions)
+    && (!payload.rewardsAddress || saved.rewards?.toLowerCase()===payload.rewardsAddress.toLowerCase())){
+    report = saved.report;
+    if(saved.pending && /^0x[0-9a-fA-F]{64}$/.test(saved.pending.hash) && typeof saved.pending.kind==="string"){
+      state.pending=saved.pending;state.recoveredPending=true;
+    }
+    $("verifier").value = payload.verifierAddress || saved.verifier || "";$("rewards").value = payload.rewardsAddress || saved.rewards || "";
+    log(state.pending ? "Recovered a pending transaction. Connect, then check its receipt." : "Recovered the previous public contract addresses and receipts.");
+  }
+} catch {log("No readable browser recovery record was found. Existing transactions remain in your wallet activity.");}
+$("config").textContent = `${payload.config.name} (${payload.config.symbol}); ${payload.config.count} epochs × ${payload.config.duration} seconds; ${BigInt(payload.config.budget)/10n**18n} ${payload.chainId===46630?"test ":""}tokens per epoch.`;
+$("heading").textContent=`DiggerChain · ${payload.chainId===46630?"testnet reward candidate":"rewards"}`;
+$("deployRewards").textContent=payload.chainId===46630?"3. Deploy test token and rewards":"3. Deploy token and rewards";
+$("network").textContent=`${payload.network.name} (${payload.chainId}). Transactions send 0 ETH and spend ${payload.chainId===46630?"test":"real"} gas. No token approvals or private keys are requested.`;
+if(navigator.userAgent.includes("Windows"))$("shell").value="powershell";
+$("identity").textContent = `Wallet: ${payload.expectedAccount || "each participant selects their own browser wallet"}\nVerifying key SHA-256: ${payload.verifyingKeySha256}`;
+function buttons(){
+  const locked = state.busy || !!state.pending;
+  for(const id of ["deployVerifier","deployRewards","inspect","context","verify","register","claim"]){$(id).disabled=locked||!state.account;}
+  $("connect").disabled=state.busy;$("pending").disabled=state.busy||!state.pending||!state.account;
+  $("download").disabled=state.busy;
+  $("verify").disabled ||= !state.proof;$("register").disabled ||= !state.proof;
+  for(const id of ["verifier","rewards","proof","claimEpoch"]){$(id).disabled=locked;}
+}
+async function run(operation){
+  if(state.busy)return;state.busy=true;buttons();
+  try{await operation();}catch(error){
+    const message=String(error.message || error);log(`Error: ${message}`);
+    report.errors ||= [];report.errors.push({message,time:new Date().toISOString()});saveRecovery();
+  }finally{state.busy=false;buttons();}
+}
+async function request(method,params=[]){
+  if(!state.provider)throw new Error("Connect MetaMask or Rabby first.");
+  return state.provider.request({method,params});
+}
+async function guard(){
+  if((await request("eth_chainId")).toLowerCase()!==CHAIN)throw new Error(`Select ${payload.network.name} (${payload.chainId}).`);
+  const accounts=await request("eth_accounts");
+  const expected=payload.expectedAccount || state.account;
+  if(!accounts[0]||!expected||accounts[0].toLowerCase()!==expected.toLowerCase())throw new Error(`Select wallet ${expected || "and reconnect"}. Reconnect after switching participants.`);
+  return accounts[0];
+}
+async function connect(){
+  state.provider=window.ethereum;
+  if(!state.provider)throw new Error("Open this local page with MetaMask or Rabby enabled.");
+  await request("eth_requestAccounts");
+  try{await request("wallet_switchEthereumChain",[{chainId:CHAIN}]);}
+  catch(error){
+    if(error.code!==4902)throw error;
+    await request("wallet_addEthereumChain",[{chainId:CHAIN,chainName:payload.network.name,nativeCurrency:{name:"Ether",symbol:"ETH",decimals:18},rpcUrls:[payload.network.rpc],blockExplorerUrls:[payload.network.explorer]}]);
+  }
+  const previous=state.account;state.account=(await request("eth_accounts"))[0];
+  let account;
+  try{account=await guard();}catch(error){state.account=null;throw error;}
+  if(previous && previous.toLowerCase()!==account.toLowerCase())state.proof=null;
+  report.account=account;report.participants ||= [];
+  if(!report.participants.some(value=>value.toLowerCase()===account.toLowerCase()))report.participants.push(account);
+  saveRecovery();$("wallet").textContent=`Connected: ${account}`;log("Connected. No transaction requested.");
+}
+function address(value){if(!/^0x[0-9a-fA-F]{40}$/.test(value)||BigInt(value)===0n)throw new Error("Enter a nonzero 20-byte contract address.");return value.toLowerCase();}
+function word(value){const n=BigInt(value);if(n<0n||n>=(1n<<256n))throw new Error("Value exceeds uint256.");return n.toString(16).padStart(64,"0");}
+function method(signature){const selector=payload.methods[signature];if(!/^[0-9a-f]{8}$/.test(selector||""))throw new Error(`Missing ABI: ${signature}`);return selector;}
+async function call(to,signature,args=[]){return request("eth_call",[{to,data:"0x"+method(signature)+args.map(word).join("")},"latest"]);}
+function number(data){if(!/^0x[0-9a-fA-F]{64}$/.test(data))throw new Error("Invalid contract return data.");return BigInt(data);}
+function bool(data){const n=number(data);if(n!==0n&&n!==1n)throw new Error("Invalid boolean return.");return n===1n;}
+function decodedText(data){
+  if(!/^0x[0-9a-fA-F]+$/.test(data)||data.length<130||number(data.slice(0,66))!==32n)throw new Error("Invalid token metadata.");
+  const size=number("0x"+data.slice(66,130));if(size>4096n||data.length<130+Number(size)*2)throw new Error("Invalid metadata length.");
+  return new TextDecoder("utf-8",{fatal:true}).decode(Uint8Array.from(data.slice(130,130+Number(size)*2).match(/../g)||[],byte=>parseInt(byte,16)));
+}
+function maskRuntime(code){
+  if(!/^0x(?:[0-9a-fA-F]{2})+$/.test(code))throw new Error("Missing contract bytecode.");
+  const bytes=code.slice(2).toLowerCase().split("");
+  for(const ref of payload.immutableRanges){bytes.fill("0",ref.start*2,(ref.start+ref.length)*2);}
+  return bytes.join("");
+}
+async function verifyVerifier(){
+  await guard();const target=address($("verifier").value.trim());
+  if((await request("eth_getCode",[target,"latest"])).toLowerCase()!==payload.verifierRuntime)throw new Error("Verifier bytecode does not match these fixed parameters.");
+  report.verifier_address=target;return target;
+}
+async function inspect(){
+  const verifier=await verifyVerifier();const target=address($("rewards").value.trim());
+  const code=await request("eth_getCode",[target,"latest"]);
+  if(code.length!==payload.rewardsRuntime.length||maskRuntime(code)!==maskRuntime(payload.rewardsRuntime))throw new Error("Rewards runtime does not match the compiled candidate.");
+  const signatures=["verifier()","startsAt()","epochDuration()","epochCount()","epochBudget()","RULES_VERSION()","totalSupply()","name()","symbol()"];
+  const values=await Promise.all(signatures.map(signature=>call(target,signature)));
+  const [actualVerifier,start,duration,count,budget,rules,supply]=values.slice(0,7).map(number);
+  if(actualVerifier!==BigInt(verifier)||duration!==BigInt(payload.config.duration)||count!==BigInt(payload.config.count)||budget!==BigInt(payload.config.budget)||rules!==2n||supply!==budget*count||decodedText(values[7])!==payload.config.name||decodedText(values[8])!==payload.config.symbol)throw new Error("Contract configuration differs from this review package.");
+  const block=await request("eth_getBlockByNumber",["latest",false]);const now=BigInt(block.timestamp);
+  const epoch=now<start?null:(now-start)/duration;
+  const open=epoch!==null&&epoch<count;
+  report.rewards_address=target;report.configuration={...payload.config,startsAt:start.toString()};saveRecovery();
+  $("status").textContent=`Token / rewards: ${target}\n${open?`Open epoch ${epoch}; ${start+(epoch+1n)*duration-now} seconds remaining at this refresh.\nRegister before ${new Date(Number(start+(epoch+1n)*duration)*1000).toLocaleString()}`:(epoch===null?`Starts at ${new Date(Number(start)*1000).toLocaleString()}; wait ${start-now} seconds, then refresh.`:"All submission epochs have ended; registered rewards remain claimable.")}`;
+  return {target,verifier,start,duration,count,budget,now,epoch,open};
+}
+function encodedText(text){const bytes=new TextEncoder().encode(text);return word(bytes.length)+Array.from(bytes,b=>b.toString(16).padStart(2,"0")).join("").padEnd(Math.ceil(bytes.length/32)*64,"0");}
+async function deployRewards(){
+  const verifier=await verifyVerifier();
+  const name=encodedText(payload.config.name),symbol=encodedText(payload.config.symbol);
+  const args=[verifier,payload.config.startDelay,payload.config.duration,payload.config.count,payload.config.budget,224n,224n+BigInt(name.length/2)].map(word).join("")+name+symbol;
+  await send("rewards_deployment",{data:payload.rewardsCreation+args});
+}
+async function send(kind,tx,details={}){
+  if(state.pending)throw new Error("A transaction is pending; check its receipt first.");
+  const from=await guard();const transaction={...tx,from,chainId:CHAIN,value:"0x0"};
+  const gas=BigInt(await request("eth_estimateGas",[transaction]));if(gas<=0n||gas>5000000n)throw new Error("Unexpected gas estimate; nothing sent.");
+  transaction.gas="0x"+((gas*12n+9n)/10n).toString(16);await guard();
+  log(`${kind}: estimated ${gas} gas. Review the transaction in your wallet.`);
+  let hash;
+  try{hash=await request("eth_sendTransaction",[transaction]);}
+  catch(error){if(error.code!==4001)log("No transaction hash was returned. Check wallet activity before retrying.");throw error;}
+  state.pending={kind,hash,from,...details};report.transactions.push({kind,hash,from,...details});saveRecovery();log(`Submitted: ${hash}`);
+  if($("manualReceipt").checked){$("manualReceipt").checked=false;log("Recovery check: reload this page, reconnect, then check the pending receipt. No duplicate transaction is needed.");return;}
+  await pollReceipt();
+}
+async function pollReceipt(){
+  if(!state.pending)return;
+  const pending={...state.pending};
+  for(let i=0;i<20;i++){
+    await guard();const receipt=await request("eth_getTransactionReceipt",[pending.hash]);
+    if(receipt){
+      const entry=report.transactions.find(tx=>tx.hash===pending.hash);if(entry)entry.receipt=receipt;
+      if(state.recoveredPending){report.recovered_transactions ||= [];report.recovered_transactions.push(pending.hash);state.recoveredPending=false;}
+      state.pending=null;
+      if(receipt.status==="0x1"){
+        if(pending.kind==="verifier_deployment")$("verifier").value=receipt.contractAddress;
+        if(pending.kind==="rewards_deployment")$("rewards").value=receipt.contractAddress;
+      }
+      saveRecovery();if(receipt.status!=="0x1")throw new Error(`${pending.kind} reverted; receipt saved.`);
+      log(`${pending.kind} confirmed. gasUsed=${BigInt(receipt.gasUsed)}`);
+      if(pending.kind==="registration")log(`Score ${pending.score} is registered on chain for epoch ${pending.epoch}. Claim after that epoch ends.`);
+      if(pending.kind==="verifier_deployment")await verifyVerifier();else await inspect();
+      return;
+    }
+    await new Promise(resolve=>setTimeout(resolve,2000));
+  }
+  log("Still pending. Use Check pending transaction; do not submit another copy.");
+}
+function quote(value){return "'"+String(value).replaceAll("'",$("shell").value==="powershell"?"''":"'\\''")+"'";}
+async function context(){
+  const current=await inspect();
+  if(!current.open){
+    const message=current.epoch===null?"The first epoch has not started. Wait until the displayed start, then prepare the command again.":"All submission epochs have ended. Keep the same save and parameters; a new matching rewards deployment is needed for submission.";
+    $("command").textContent=message;log(message);return;
+  }
+  const output=`${payload.playerMode?".":"target"}/reward-proof-${current.epoch}-${Date.now()}`;
+  const save=payload.savePath.replaceAll("{account}",state.account.toLowerCase());
+  const args=[save,payload.parametersPath,String(payload.chainId),current.epoch.toString(),state.account,current.target,output];
+  const extension=$("shell").value==="powershell"?".exe":"";
+  const play=payload.playerMode?`./diggerchain${extension}`:"cargo run --release --locked --";
+  const prover=payload.playerMode?`./diggerchain-proof${extension} prove`:"bash scripts/proof-release.sh prove";
+  const forge=payload.playerMode?"":"\n\nThen run the four real-verifier tests:\n\n\"$HOME/.foundry/bin/forge\" test --root "+quote(output)+" --use \"$PWD/target/solc-0.8.28\" --offline -vv";
+  $("command").textContent="If this participant's save is unfinished, play it first:\n\n"+play+" --expedition --save "+quote(save)+"\n\nCollect a crystal, press F, then Q. After playing, click Prepare offline proof command again for a fresh epoch context. If the save is already finished, skip playing.\n\nProve the finished save, then register before the displayed deadline:\n\n"+prover+" "+args.map(quote).join(" ")+forge+"\n\nLoad "+output+"/evm.json here, then click 6. Register score and approve the wallet transaction. Checking the proof alone does not register it. Never upload the save file.";
+  log(`Prepared public context for epoch ${current.epoch}. A late proof must be regenerated for a later open epoch.`);
+  if(current.start+(current.epoch+1n)*current.duration-current.now<120n)log("Less than two minutes remain. Proving and wallet confirmation may outlast this epoch; consider preparing again after the next epoch starts.");
+}
+function scalar(value,modulus){if(typeof value!=="string"||!/^\d{1,78}$/.test(value)||BigInt(value)>=modulus)throw new Error("Noncanonical proof word.");return BigInt(value);}
+function proofData(selector,proof,inputs){return "0x"+selector+proof.map(value=>word(scalar(value,FQ))).join("")+inputs.map(value=>word(scalar(value,FR))).join("");}
+async function verifyProof(){
+  const current=await inspect();if(!state.proof)throw new Error("Load the public evm.json first.");
+  const {proof,public_inputs:inputs}=state.proof;
+  if(inputs[0]!=="2"||BigInt(inputs[2])!==BigInt(payload.chainId)||BigInt(inputs[12])!==BigInt(state.account)||BigInt(inputs[13])!==BigInt(current.target))throw new Error("Proof rules, network, recipient, or contract do not match.");
+  if(!current.open||BigInt(inputs[3])!==current.epoch)throw new Error("The proof epoch is no longer open. Prepare a new context and prove the same unsubmitted save again.");
+  const valid=await request("eth_call",[{to:current.verifier,data:proofData("b11c6afb",proof,inputs)},"latest"]);
+  const altered=[...inputs];altered[5]=((BigInt(altered[5])+1n)%FR).toString();
+  const forged=await request("eth_call",[{to:current.verifier,data:proofData("b11c6afb",proof,altered)},"latest"]);
+  if(!bool(valid)||bool(forged))throw new Error("Valid-proof acceptance or altered-score rejection failed.");
+  const data=proofData(method("register(uint256[8],uint256[14])"),proof,inputs);
+  await request("eth_call",[{from:state.account,to:current.target,data,value:"0x0"},"latest"]);
+  report.real_proof_accepted=true;report.altered_score_rejected=true;report.registration_dry_run_passed=true;report.public_inputs=inputs;saveRecovery();
+  log(`Proof check passed; altered score rejected; registration dry run passed. Score=${inputs[5]}, epoch=${inputs[3]}. This check did not register the score. Click 6. Register score and approve the wallet transaction.`);
+  return {current,data,inputs};
+}
+$("proof").onchange=()=>run(async()=>{
+  state.proof=null;const file=$("proof").files[0];if(!file)return;
+  if(file.name!=="evm.json")throw new Error("Select the public evm.json from the proof output directory. No other file is read.");
+  if(file.size>65536)throw new Error("Public proof JSON exceeds 64 KiB.");
+  let value;
+  try{value=JSON.parse(await file.text());}catch{throw new Error("The selected public proof file is not valid JSON.");}
+  if(!value||typeof value!=="object"||Array.isArray(value))throw new Error("Unexpected public proof schema.");
+  if(value.secret!==undefined||value.actions!==undefined)throw new Error("That appears to be a private save. Load evm.json from the proof output directory.");
+  if(value.function!=="verify(uint256[8],uint256[14])"||JSON.stringify(value.public_input_names)!==JSON.stringify(payload.names)||!Array.isArray(value.proof)||value.proof.length!==8||!Array.isArray(value.public_inputs)||value.public_inputs.length!==14)throw new Error("Unexpected proof schema; use the authenticated reward tool.");
+  proofData("b11c6afb",value.proof,value.public_inputs);state.proof={proof:value.proof,public_inputs:value.public_inputs};$("claimEpoch").value=value.public_inputs[3];log("Loaded public proof. No save secret was read or sent.");
+});
+$("connect").onclick=()=>run(connect);
+$("deployVerifier").onclick=()=>run(()=>send("verifier_deployment",{data:payload.verifierCreation}));
+$("deployRewards").onclick=()=>run(deployRewards);
+$("inspect").onclick=()=>run(async()=>{await inspect();log("Runtime, verifier, token configuration, and chain time checked.");});
+$("context").onclick=()=>run(context);
+$("verify").onclick=()=>run(verifyProof);
+$("register").onclick=()=>run(async()=>{const result=await verifyProof();await send("registration",{to:result.current.target,data:result.data},{epoch:result.inputs[3],score:result.inputs[5]});});
+$("claim").onclick=()=>run(async()=>{
+  const current=await inspect();const text=$("claimEpoch").value;if(!/^\d+$/.test(text))throw new Error("Enter an unsigned epoch number.");
+  const epoch=BigInt(text);if(epoch>=current.count||current.now<current.start+(epoch+1n)*current.duration)throw new Error("This epoch has not ended or does not exist.");
+  const [amount,own,total,claimed]=await Promise.all([
+    call(current.target,"claimable(uint256,address)",[epoch,state.account]),
+    call(current.target,"scoreOf(uint256,address)",[epoch,state.account]),call(current.target,"totalScore(uint256)",[epoch]),
+    call(current.target,"claimed(uint256,address)",[epoch,state.account])
+  ]).then(values=>values.map(number));
+  report.epoch_checks ||= [];report.epoch_checks.push({epoch:epoch.toString(),player:state.account,claimable:amount.toString(),player_score:own.toString(),total_score:total.toString(),claimed:claimed===1n});saveRecovery();
+  if(total===0n){log(`Epoch ${epoch} is empty: no scores were registered, so there is no reward to claim. No transaction requested.`);return;}
+  if(own===0n){log(`This wallet has no registered score in epoch ${epoch}. Checking a proof does not register it. No transaction requested.`);return;}
+  if(claimed===1n){log(`This wallet has already claimed epoch ${epoch}. No transaction requested.`);return;}
+  log(`Claim amount: ${amount} base units (${payload.config.symbol}, 18 decimals).`);
+  await send("claim",{to:current.target,data:"0x"+method("claim(uint256)")+word(epoch)},{epoch:epoch.toString(),amount:amount.toString(),player_score:own.toString(),total_score:total.toString()});
+  log(`Wallet token balance: ${number(await call(current.target,"balanceOf(address)",[state.account]))} base units.`);
+});
+$("pending").onclick=()=>run(pollReceipt);
+for(const id of ["verifier","rewards"]){$(id).onchange=saveRecovery;}
+$("download").onclick=()=>{
+  const blob=new Blob([JSON.stringify(report,null,2)+"\n"],{type:"application/json"});const url=URL.createObjectURL(blob),link=document.createElement("a");
+  link.href=url;link.download=`diggerchain-rewards-${payload.chainId}-${payload.expectedAccount?.slice(2,10) || "smoke"}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+};
+buttons();
+</script>
+</html>

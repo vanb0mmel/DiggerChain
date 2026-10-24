@@ -1,0 +1,16 @@
+[⠊] Compiling...
+[⠰] Compiling 2 files with Solc 0.8.28
+[⠔] Solc 0.8.28 finished in 312.49ms
+Compiler run successful!
+
+Ran 4 tests for test/Verifier.t.sol:VerifierTest
+[PASS] testEveryAlteredPublicInputIsRejected() (gas: 2992438)
+[PASS] testNoncanonicalProofCoordinateIsRejected() (gas: 6579)
+[PASS] testNoncanonicalScalarIsRejected() (gas: 45563)
+[PASS] testValidProofAndCallGas() (gas: 275222)
+Logs:
+  verifier_call_gas_excluding_deployment: 269032
+
+Suite result: ok. 4 passed; 0 failed; 0 skipped; finished in 27.71ms (31.45ms CPU time)
+
+Ran 1 test suite in 28.41ms (27.71ms CPU time): 4 tests passed, 0 failed, 0 skipped (4 total tests)

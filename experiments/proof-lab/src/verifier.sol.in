@@ -1,0 +1,64 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.28;
+
+// Experiment-only verifier. Its local setup is unsuitable for funded rewards.
+contract Verifier {
+    uint256 private constant BASE_FIELD =
+        21888242871839275222246405745257275088696311157297823662689037894645226208583;
+    uint256 private constant SCALAR_FIELD =
+        21888242871839275222246405745257275088548364400416034343698204186575808495617;
+
+    function verify(uint256[8] calldata proof, uint256[11] calldata inputs)
+        external view returns (bool)
+    {
+        for (uint256 i = 0; i < 8; ++i) {
+            if (proof[i] >= BASE_FIELD) return false;
+        }
+        uint256[24] memory ic = [{{IC}}];
+        uint256[2] memory accumulated = [ic[0], ic[1]];
+        for (uint256 i = 0; i < 11; ++i) {
+            if (inputs[i] >= SCALAR_FIELD) return false;
+            uint256[2] memory point = [ic[(i + 1) * 2], ic[(i + 1) * 2 + 1]];
+            (bool multiplied, uint256[2] memory product) = multiply(point, inputs[i]);
+            if (!multiplied) return false;
+            (bool added, uint256[2] memory sum) = add(accumulated, product);
+            if (!added) return false;
+            accumulated = sum;
+        }
+        uint256[2] memory alpha = [{{ALPHA}}];
+        uint256[4] memory beta = [{{BETA}}];
+        uint256[4] memory gamma = [{{GAMMA}}];
+        uint256[4] memory delta = [{{DELTA}}];
+        uint256[24] memory pairs = [
+            proof[0], proof[1] == 0 ? 0 : BASE_FIELD - proof[1],
+            proof[2], proof[3], proof[4], proof[5],
+            alpha[0], alpha[1], beta[0], beta[1], beta[2], beta[3],
+            accumulated[0], accumulated[1], gamma[0], gamma[1], gamma[2], gamma[3],
+            proof[6], proof[7], delta[0], delta[1], delta[2], delta[3]
+        ];
+        bool ok;
+        uint256[1] memory result;
+        assembly ("memory-safe") {
+            ok := staticcall(gas(), 8, pairs, 0x300, result, 0x20)
+        }
+        return ok && result[0] == 1;
+    }
+
+    function add(uint256[2] memory a, uint256[2] memory b)
+        private view returns (bool ok, uint256[2] memory result)
+    {
+        uint256[4] memory values = [a[0], a[1], b[0], b[1]];
+        assembly ("memory-safe") {
+            ok := staticcall(gas(), 6, values, 0x80, result, 0x40)
+        }
+    }
+
+    function multiply(uint256[2] memory point, uint256 scalar)
+        private view returns (bool ok, uint256[2] memory result)
+    {
+        uint256[3] memory values = [point[0], point[1], scalar];
+        assembly ("memory-safe") {
+            ok := staticcall(gas(), 7, values, 0x60, result, 0x40)
+        }
+    }
+}

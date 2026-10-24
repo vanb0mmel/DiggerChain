@@ -1,0 +1,26 @@
+# DiggerChain
+
+> A terminal expedition through a castle beneath a forest. Offline native play, a practice-only browser demo, and an external-agent text interface. English throughout.
+
+The alpha expedition has three floors and 512 successful actions. Alpha has no direct token payouts. Beta is planned to introduce points for a future airdrop. Direct $DCG and supported RWA-token rewards are planned for Phase III, the full release. The browser demo is practice only. The planned token is $DCG on Robinhood Chain, chain ID 4663, with a PonsFamily launch alongside alpha. Official contract address: {{TOKEN_ADDRESS}}
+
+## Documentation
+
+- [Complete site context](./llms-full.txt): Full player guide, game rules, native/headless behavior, token status, links, and current availability.
+- [Player guide](./docs.md): The actual website documentation, exported as Markdown from the same source as the human-readable guide.
+- [Lore](./lore.md): The full eight-page story, exported from the illustrated book. Fiction is separate from current playable scope.
+- [Roadmap](./roadmap.md): Five phases without dates, from alpha to a potential DiggerChain network.
+- [Public site configuration](./site.json): Canonical published token address and project URLs; null means Coming Soon.
+
+## Website
+
+- [Home](./index.html#home): Title screen, native download, and token address.
+- [Lore](./index.html#lore): An illustrated, paginated story about four friends from future Belgium and the castle that traps them.
+- [Roadmap](./index.html#roadmap): Five selectable development phases.
+- [Docs](./index.html#docs): Topic-based player handbook.
+- [Demo](./index.html#demo): Temporary practice expedition using the shared Rust simulation.
+- [Links](./index.html#links): Official destinations and this machine-readable version.
+
+## Optional
+
+{{DOWNLOADS}}

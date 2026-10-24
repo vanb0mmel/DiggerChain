@@ -1,0 +1,95 @@
+{
+    "title": "The stone beneath the orchard",
+    "scenes": [
+        {
+            "art": "01-the-stone-v2.webp",
+            "alt": "Four friends uncover a luminous stone in the orchard of a Belgian country house.",
+            "width": 1774,
+            "height": 887
+        },
+        {
+            "art": "02-between-worlds-v2.webp",
+            "alt": "The friends fall between dimensions, dressed in unfamiliar medieval armor.",
+            "width": 1774,
+            "height": 887
+        },
+        {
+            "art": "03-the-keeper-v2.webp",
+            "alt": "A hooded keeper with a half-skeletal face and green eyes beckons at a cave entrance.",
+            "width": 1774,
+            "height": 887
+        },
+        {
+            "art": "04-the-castle-v2.webp",
+            "alt": "Four delvers stand inside an immense gothic castle concealed within the cave.",
+            "width": 1774,
+            "height": 887
+        }
+    ],
+    "pages": [
+        {
+            "slug": "the-weekend",
+            "scene": 0,
+            "title": "A place apart",
+            "paragraphs": [
+                "In the Belgium of tomorrow, Adrien's country house was a small rebellion: an orchard, an unreliable stove, and no reason to hurry. Mara, Niko and Elise arrived for a weekend together. By dusk, they had abandoned every sensible plan. Then a shovel struck something beneath the oldest apple tree."
+            ]
+        },
+        {
+            "slug": "the-stone",
+            "scene": 0,
+            "title": "Something beneath the roots",
+            "paragraphs": [
+                "The stone was black, warm, and threaded with a light that had no business being underground. They dug around it, laughing at their own curiosity. The last root snapped. For one impossible instant, their shadows pointed towards the stone. Then the orchard vanished in a white flash."
+            ]
+        },
+        {
+            "slug": "the-fall",
+            "scene": 1,
+            "title": "The space between",
+            "paragraphs": [
+                "They fell through places that could not exist. A sea hung overhead. Stars passed beneath their feet. Adrien caught a glimpse of the house, impossibly distant, before it folded shut like a page. Nobody heard the others shouting. They reached for one another anyway."
+            ]
+        },
+        {
+            "slug": "the-armour",
+            "scene": 1,
+            "title": "Borrowed lives",
+            "paragraphs": [
+                "The landing was softer than it should have been. Moss. Cold air. An unfamiliar moon. Their ordinary clothes were gone, replaced by armour fitted as though someone had expected them. A pickaxe rested against Adrien's hand. Ahead, between enormous roots, a cave opened into the dark."
+            ]
+        },
+        {
+            "slug": "the-keeper",
+            "scene": 2,
+            "title": "A patient welcome",
+            "paragraphs": [
+                "Someone was waiting. An old man stood at the threshold in a robe dark enough to swallow the evening. Half his face was bare skull. Both eyes burned green. He inclined his head, almost politely. 'You have come a long way. Come inside. There is much to see.'"
+            ]
+        },
+        {
+            "slug": "the-threshold",
+            "scene": 2,
+            "title": "A light to follow",
+            "paragraphs": [
+                "Beyond him, candlelight moved across stone. Not rough cave walls: columns. Carved arches. The faint outline of a staircase. Elise looked back at the forest. Nothing there belonged to the world they knew. Together, they followed the keeper over the threshold."
+            ]
+        },
+        {
+            "slug": "the-castle",
+            "scene": 3,
+            "title": "The castle within",
+            "paragraphs": [
+                "The cave was a castle. Halls rose into darkness, bridges crossed empty air, and stairways descended beyond the reach of candlelight. Somewhere below, a crystal answered their footsteps with a thin green glimmer. Every doorway promised another secret. There seemed to be no end to it."
+            ]
+        },
+        {
+            "slug": "the-descent",
+            "scene": 3,
+            "title": "No way but deeper",
+            "paragraphs": [
+                "'Find the crystals,' the keeper said. 'All of them. Then you may leave.' His laughter followed them as the entrance sealed behind their backs. Niko pushed against the stone. Nothing moved. Mara raised her light. Four friends stood before a thousand passages. Somewhere beneath them, the first answer waited."
+            ]
+        }
+    ]
+}

@@ -1,0 +1,70 @@
+{
+    "title": "The descent ahead",
+    "phases": [
+        {
+            "slug": "alpha",
+            "numeral": "I",
+            "title": "The first descent",
+            "label": "Alpha & $DCG",
+            "status": "Launch milestone",
+            "summary": "Launch $DCG on Robinhood Chain through PonsFamily and open the alpha expedition. Put the game in players' hands, welcome agent-driven exploration, and learn from the first descents.",
+            "steps": [
+                "A playable alpha and the token launch.",
+                "Player feedback shapes the next passage.",
+                "No direct token payouts during alpha."
+            ]
+        },
+        {
+            "slug": "beta",
+            "numeral": "II",
+            "title": "The next passage",
+            "label": "Beta & points",
+            "status": "Planned milestone",
+            "summary": "Bring the expedition into beta and introduce points for a future airdrop. Develop the experience around what players discover in the castle.",
+            "steps": [
+                "A more developed beta expedition.",
+                "A points system for a future airdrop.",
+                "Further details announced with this phase."
+            ]
+        },
+        {
+            "slug": "release",
+            "numeral": "III",
+            "title": "Crystals with real value",
+            "label": "Full release & rewards",
+            "status": "Planned milestone",
+            "summary": "The full release targets direct $DCG rewards together with fractions of supported RWA tokens. NVDA, AAPL and MSFT are examples of intended token integrations for the crystal reward layer.",
+            "steps": [
+                "Direct rewards begin with this phase.",
+                "Supported RWA assets confirmed before activation.",
+                "A complete release beyond the alpha and beta."
+            ]
+        },
+        {
+            "slug": "listings",
+            "numeral": "IV",
+            "title": "Beyond the gates",
+            "label": "DEX & CEX",
+            "status": "Future milestone",
+            "summary": "Pursue exchange listings and broader access to $DCG. DEX and CEX availability will be announced through official project channels as arrangements are confirmed.",
+            "steps": [
+                "Expand token accessibility.",
+                "Pursue DEX and CEX listings.",
+                "Announce confirmed venues rather than dates."
+            ]
+        },
+        {
+            "slug": "network",
+            "numeral": "V",
+            "title": "The chain below",
+            "label": "The DiggerChain network",
+            "status": "Research milestone",
+            "summary": "Research a DiggerChain L3 on Robinhood Chain, drawing on ideas from Pearl. Explore making the game a core part of the network's mining model: a chain built around the descent itself.",
+            "steps": [
+                "Explore a dedicated network and its architecture.",
+                "Research game-based mining and security rules.",
+                "Turn the DiggerChain name into a network vision."
+            ]
+        }
+    ]
+}

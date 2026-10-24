@@ -1,0 +1,16 @@
+/target/
+/experiments/proof-lab/target/
+/contracts/out/
+/contracts/cache/
+/saves/
+*.log
+.DS_Store
+Thumbs.db
+/CEO-FILES/
+/tools/promo/target/
+/.impeccable/build/
+/.impeccable/review/
+/.impeccable/mocks/
+
+__pycache__/
+*.py[cod]

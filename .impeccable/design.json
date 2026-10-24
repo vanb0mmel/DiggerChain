@@ -1,0 +1,308 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-24T00:20:58+00:00",
+  "title": "Design System: DiggerChain website",
+  "extensions": {
+    "evidence": "Source-derived website-only record: site.css, index.html, app.js, demo.js, content/lore.json, content/roadmap.json, assets/wordmark.svg, scripts/website_content.py, PRODUCT.md, and the website surface brief. No computed-style, screenshot, runtime, gameplay, or visual-acceptance evidence. Runtime and final visual acceptance remain with the user.",
+    "themes": {
+      "dark": {
+        "displayName": "Dark",
+        "values": {
+          "--color-ground": "#090b0e",
+          "--color-ink": "#e5e9ef",
+          "--color-muted": "#a5adba",
+          "--color-accent": "#a7db86",
+          "--color-rule": "#5d6777",
+          "--color-surface": "#12161c",
+          "--color-hover": "#1d252b",
+          "--color-crystal": "#7dd7d0",
+          "--color-portal": "#bca4ec",
+          "--color-flask": "#e3b979",
+          "--map-ground": "#0b0f14",
+          "--map-floor": "#151c23",
+          "--map-floor-alt": "#1b242b",
+          "--map-memory": "#10151a",
+          "--map-wall": "#a5adba",
+          "--map-walk": "#627583",
+          "--map-rock": "#b3bdc9",
+          "--map-hard": "#d1d7df",
+          "--map-remembered": "#4d5966",
+          "--map-player-bg": "#2c3c31"
+        }
+      },
+      "nord": {
+        "displayName": "Nord",
+        "values": {
+          "--color-ground": "#2e3440",
+          "--color-ink": "#eceff4",
+          "--color-muted": "#d8dee9",
+          "--color-accent": "#88c0d0",
+          "--color-rule": "#8191a9",
+          "--color-surface": "#343d4b",
+          "--color-hover": "#434c5e",
+          "--color-crystal": "#8fbcbb",
+          "--color-portal": "#b7a1c6",
+          "--color-flask": "#ebcb8b",
+          "--map-ground": "#252c37",
+          "--map-floor": "#303a48",
+          "--map-floor-alt": "#374252",
+          "--map-memory": "#2a3240",
+          "--map-wall": "#a6b4c9",
+          "--map-walk": "#7c91a5",
+          "--map-rock": "#d8dee9",
+          "--map-hard": "#eceff4",
+          "--map-remembered": "#596d84",
+          "--map-player-bg": "#41586a"
+        }
+      },
+      "solar": {
+        "displayName": "Solarized Light",
+        "values": {
+          "--color-ground": "#fdf6e3",
+          "--color-ink": "#073642",
+          "--color-muted": "#586e75",
+          "--color-accent": "#006d72",
+          "--color-rule": "#7d908a",
+          "--color-surface": "#f5eedb",
+          "--color-hover": "#eee8d5",
+          "--color-crystal": "#007a78",
+          "--color-portal": "#6256a0",
+          "--color-flask": "#9c4c21",
+          "--map-ground": "#f8f0dc",
+          "--map-floor": "#eee8d5",
+          "--map-floor-alt": "#e5e2d0",
+          "--map-memory": "#f4ecd8",
+          "--map-wall": "#586e75",
+          "--map-walk": "#778b89",
+          "--map-rock": "#8e6345",
+          "--map-hard": "#536d79",
+          "--map-remembered": "#9ba9a0",
+          "--map-player-bg": "#c9dfcf"
+        }
+      }
+    },
+    "breakpoints": [
+      {
+        "name": "narrow",
+        "query": "(max-width: 760px)",
+        "behavior": "20px page padding; 25px page headings; Lore keeps art above copy with a 16px gap; Roadmap uses numeral-only horizontal phases; Demo controls move below the map."
+      },
+      {
+        "name": "compact-docs",
+        "query": "(max-width: 760px), (max-height: 540px)",
+        "behavior": "Hide topic sidebar; show a 40px-minimum-height selector; 10px reader gap; article 15px/1.7 and chapter headings 22px/1.3."
+      },
+      {
+        "name": "compact",
+        "query": "(max-width: 440px)",
+        "behavior": "16px page padding; 12px theme labels; Home caption 13px, commands 19px, CA 11px; Demo stat values 15px; destination names 14px and icons 28px."
+      },
+      {
+        "name": "short",
+        "query": "(max-height: 780px)",
+        "behavior": "Hide Demo help."
+      },
+      {
+        "name": "low",
+        "query": "(max-height: 660px)",
+        "behavior": "42px toolbar and candle mark; 32px footer line boxes; Home commands 18px/1.15; page headings 24px; hide secondary Demo details."
+      },
+      {
+        "name": "low-narrow",
+        "query": "(max-height: 660px) and (max-width: 760px)",
+        "behavior": "Restore Demo tools to a row."
+      },
+      {
+        "name": "landscape",
+        "query": "(max-height: 420px)",
+        "behavior": "Home becomes two columns beneath the spanning bitmap title capped at 54px; caption 12px and commands 16px; reader actions minimum 32px. Lore keeps one column with artwork above copy and a 10px gap, hides its outer heading, and uses 19px passage headings and 12px/1.5 copy. Roadmap uses 20px headings and 12px/1.4 copy, with outer heading and status hidden. Links uses four columns."
+      },
+      {
+        "name": "short-landscape-demo",
+        "query": "(max-height: 420px) and (min-width: 480px)",
+        "behavior": "144px sidebar; two-row 44px touch pad; 36px message row; stat values 13px; message 12px/1.35."
+      }
+    ],
+    "focus": {
+      "value": "1px solid var(--color-accent)",
+      "offset": "3px",
+      "homeCommand": "Underline without outline; the selected cursor remains visible."
+    },
+    "motion": [],
+    "elevation": "Flat surfaces; no box-shadow system. Candle, paintings, thin rules, and map tones supply depth.",
+    "shortLandscapeDemo": "144px sidebar; two-row 44px touch pad; 36px message row.",
+    "typographyMeta": {
+      "headline": {
+        "displayName": "Page heading",
+        "purpose": "Regular-weight headings above each interior page."
+      },
+      "title": {
+        "displayName": "Docs chapter heading",
+        "purpose": "Heading inside the selected guide chapter."
+      },
+      "body": {
+        "displayName": "Interface body",
+        "purpose": "Default proportional copy and inherited controls."
+      },
+      "article": {
+        "displayName": "Reading copy",
+        "purpose": "Docs paragraphs, Lore passages, and Roadmap summaries; Docs measure is 68ch and Lore copy width is min(72ch, 100%)."
+      },
+      "command": {
+        "displayName": "Home commands",
+        "purpose": "Three direct Home actions with a selected cursor."
+      },
+      "code": {
+        "displayName": "Proportional code",
+        "purpose": "Commands in the guide; intentionally uses the same proportional book family."
+      },
+      "label": {
+        "displayName": "Utility label",
+        "purpose": "Theme buttons, compact topic selection, and reader pagination."
+      }
+    },
+    "fontLoading": {
+      "family": "Libre Baskerville",
+      "asset": "website/assets/fonts/libre-baskerville.woff2",
+      "format": "woff2",
+      "style": "normal",
+      "weightRange": "400 700",
+      "display": "swap",
+      "preloaded": true,
+      "fallbacks": [
+        "Georgia",
+        "serif"
+      ],
+      "scope": "Website copy, UI, code, keyboard labels, and canvas glyphs. The inline bitmap Home wordmark uses no font loading or swapping. Native terminal font remains outside this system."
+    },
+    "readingLayout": {
+      "outerShell": "100dvh with 100svh fallback; toolbar/content/footer tracks; hidden outer overflow.",
+      "pageWidth": "min(1160px, 100%)",
+      "docs": "190px topic column, 32px gap; one selected chapter. The article is the only scrolling reading region; nested command blocks may overflow horizontally. Sidebar and pagination stay stationary.",
+      "lore": "Eight pages and four wide v2 paintings (1774×887); one painting per two passages. Always one column, artwork above copy, including short landscape. Gap 20px, 16px at width ≤760px, 10px at height ≤420px. Artwork object-fit:contain and object-position:center bottom, without a contrasting panel background. Centered copy width min(72ch, 100%), desktop body 16px/1.7, heading bottom margin 12px. Originals and prompts: CEO-FILES/lore/2026-10-24-v2; earlier artwork is not shipped.",
+      "roadmap": "Five phases without dates; 240px selector column and 48px gap; one phase and Previous/Next at a time."
+    },
+    "canvas": {
+      "cellSize": "floor(min(canvas CSS width / columns, canvas CSS height / rows, 32))",
+      "devicePixelRatio": "min(window.devicePixelRatio || 1, 3)",
+      "glyphSize": "max(8, round(cellSize * 0.7)) CSS px",
+      "font": "Libre Baskerville, Georgia, serif",
+      "alignment": "Centered square cells with integer CSS coordinates; glyphs centered in each cell.",
+      "repaint": [
+        "state changes",
+        "ResizeObserver",
+        "window resize",
+        "font readiness",
+        "theme changes"
+      ],
+      "fog": "Persistent fog and remembered cells remain enabled."
+    },
+    "homeWordmark": {
+      "asset": "website/assets/wordmark.svg",
+      "rendering": "Original bitmap/character-art SVG embedded inline by scripts/website_content.py; paths use currentColor, etching uses var(--color-ground), and no wordmark font loads or swaps.",
+      "accessibility": "Home h1 aria-label DiggerChain; decorative SVG aria-hidden=true and focusable=false.",
+      "sizing": "Container width min(1120px, 100%); SVG width 100%, height auto, max-height clamp(48px, 15dvh, 144px); max-height 54px at height ≤420px."
+    },
+    "homeDownload": "Home Download opens #docs/download; the actual archive download remains inside Docs.",
+    "pageCaptions": "Secondary captions on Docs, Demo, Roadmap, and Links are omitted."
+  },
+  "components": [
+    {
+      "name": "Text action",
+      "kind": "button",
+      "refersTo": "text-action",
+      "description": "Direct proportional text action with accent, underline hover, keyboard focus, and muted disabled state.",
+      "html": "<button type=\"button\" class=\"ds-action\">Enter the castle</button>",
+      "css": ".ds-action{border:0;padding:0;background:none;color:var(--color-accent);font:16px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif);text-align:left;text-decoration:none;cursor:pointer}.ds-action:hover:not(:disabled){color:var(--color-ink);text-decoration:underline}.ds-action:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}.ds-action:disabled{color:var(--color-muted);cursor:default}"
+    },
+    {
+      "name": "Home command",
+      "kind": "nav",
+      "refersTo": "home-command",
+      "description": "Selected Home command keeps its cursor and uses the responsive proportional command scale.",
+      "html": "<a class=\"ds-command ds-command-selected\" href=\"#demo\"><span class=\"ds-command-cursor\" aria-hidden=\"true\">&gt;</span>Play demo</a>",
+      "css": ".ds-command{position:relative;display:block;width:max-content;padding:3px 8px;color:var(--color-ink);font:clamp(18px,2vw,23px)/1.35 var(--font-body, 'Libre Baskerville', Georgia, serif);text-decoration:none}.ds-command-cursor{position:absolute;left:-.7em;visibility:hidden}.ds-command-selected{color:var(--color-accent)}.ds-command-selected .ds-command-cursor{visibility:visible}.ds-command:hover{color:var(--color-accent)}.ds-command:focus-visible{outline:none;text-decoration:underline}@media(max-width:440px){.ds-command{font-size:19px}}@media(max-height:660px){.ds-command{padding-block:2px;font-size:18px;line-height:1.15}}@media(max-height:420px){.ds-command{font-size:16px}}"
+    },
+    {
+      "name": "Theme choice",
+      "kind": "button",
+      "refersTo": "theme-choice",
+      "description": "Compact palette control; the pressed option uses a rule border and accent lettering.",
+      "html": "<button type=\"button\" class=\"ds-theme\" aria-pressed=\"true\">Dark</button>",
+      "css": ".ds-theme{min-width:54px;min-height:36px;padding:4px 8px;border:1px solid transparent;background:transparent;color:var(--color-muted);font:13px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif);cursor:pointer}.ds-theme[aria-pressed=\"true\"]{border-color:var(--color-rule);color:var(--color-accent)}.ds-theme:hover{background:var(--color-hover);color:var(--color-ink)}.ds-theme:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}@media(max-width:440px){.ds-theme{min-width:48px;padding-inline:6px;font-size:12px}}"
+    },
+    {
+      "name": "Docs topic",
+      "kind": "nav",
+      "refersTo": "topic-link",
+      "description": "Selected topic uses a quiet surface and an inline stroke icon, matching the desktop topic column.",
+      "html": "<a class=\"ds-topic\" href=\"#docs/start\" aria-current=\"location\"><svg class=\"ds-topic-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"><path d=\"M12 5C9 3 5 3 2 4v15c3-1 7-1 10 1 3-2 7-2 10-1V4c-3-1-7-1-10 1Zm0 0v15\"/></g></svg><span>Start here</span></a>",
+      "css": ".ds-topic{display:flex;align-items:center;gap:10px;min-height:38px;padding:6px 8px;color:var(--color-muted);font:14px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif);text-decoration:none}.ds-topic[aria-current=\"location\"]{color:var(--color-accent);background:var(--color-surface)}.ds-topic:hover{color:var(--color-ink)}.ds-topic:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}.ds-topic-icon{width:17px;height:17px;flex:none}@media(max-height:660px){.ds-topic{min-height:32px;padding-block:4px}}"
+    },
+    {
+      "name": "Compact topic selector",
+      "kind": "input",
+      "refersTo": "topic-select",
+      "description": "Labeled square selector replaces Docs topics at width 760px or height 540px and below.",
+      "html": "<label class=\"ds-topic-label\">Topic<select class=\"ds-topic-select\" aria-label=\"Choose a guide topic\"><option>Start here</option><option>Get the game</option><option>Controls</option></select></label>",
+      "css": ".ds-topic-label{display:flex;align-items:center;gap:12px;color:var(--color-muted);font:13px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif)}.ds-topic-select{width:100%;min-height:40px;border:1px solid var(--color-rule);border-radius:0;padding:4px 8px;background:var(--color-ground);color:var(--color-ink);font:13px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif)}.ds-topic-select:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}"
+    },
+    {
+      "name": "Touch control",
+      "kind": "button",
+      "refersTo": "touch-control",
+      "description": "Square map action reverses on hover or press and dims when disabled.",
+      "html": "<button type=\"button\" class=\"ds-touch\" aria-label=\"Move or dig north\">↑</button>",
+      "css": ".ds-touch{width:44px;height:44px;padding:0;border:1px solid var(--color-rule);background:transparent;color:var(--color-ink);font:20px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif);touch-action:manipulation;user-select:none;cursor:pointer}.ds-touch:hover:not(:disabled),.ds-touch:active:not(:disabled){background:var(--color-ink);color:var(--color-ground);border-color:var(--color-ink)}.ds-touch:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}.ds-touch:disabled{color:var(--color-muted);cursor:default;opacity:.5}"
+    },
+    {
+      "name": "Footer navigation",
+      "kind": "nav",
+      "refersTo": "footer-navigation",
+      "description": "Six equal destinations stay compact; current page and hovered links use the accent.",
+      "html": "<nav class=\"ds-footer\" aria-label=\"Main navigation\"><a href=\"#home\" aria-current=\"page\">Home</a><a href=\"#lore\">Lore</a><a href=\"#roadmap\">Roadmap</a><a href=\"#docs\">Docs</a><a href=\"#demo\">Demo</a><a href=\"#links\">Links</a></nav>",
+      "css": ".ds-footer{width:min(720px,100%);margin-inline:auto;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));font:clamp(12px,1.6vw,15px)/38px var(--font-body, 'Libre Baskerville', Georgia, serif);text-align:center}.ds-footer a{color:var(--color-muted);padding-inline:2px;text-decoration:none;white-space:nowrap}.ds-footer a+a{border-left:1px solid var(--color-rule)}.ds-footer a:hover,.ds-footer a[aria-current=\"page\"]{color:var(--color-accent)}.ds-footer a:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}@media(max-height:660px){.ds-footer{line-height:32px}}"
+    },
+    {
+      "name": "Project destination",
+      "kind": "card",
+      "refersTo": "destination",
+      "description": "Thin-bordered destination pairs its actual inline icon with a proportional name and muted status.",
+      "html": "<a class=\"ds-destination\" href=\"./llms.txt\" target=\"_blank\" rel=\"noopener noreferrer\"><svg class=\"ds-destination-icon\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><g fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.8\" stroke-linejoin=\"miter\"><path d=\"M5 7h14v13H5zM12 7V3m-2 0h4M5 11H2v6h3m14-6h3v6h-3M9 16h6\"/><path d=\"M9 10v3m6-3v3\" stroke-width=\"2.4\"/></g></svg><span class=\"ds-destination-name\">LLMs</span><span class=\"ds-destination-status\">Open link</span></a>",
+      "css": ".ds-destination{display:grid;grid-template-columns:40px minmax(0,1fr);gap:0 16px;align-content:center;align-items:center;border:1px solid var(--color-rule);padding:18px 20px;background:transparent;color:var(--color-ink);font:16px/1.55 var(--font-body, 'Libre Baskerville', Georgia, serif);text-decoration:none;text-align:left}.ds-destination-icon{width:36px;height:36px;grid-row:1/3;color:var(--color-ink)}.ds-destination-name{font-size:18px}.ds-destination-status{color:var(--color-muted);font-size:12px}.ds-destination:hover:not(:disabled){border-color:var(--color-accent);background:var(--color-hover);color:var(--color-accent)}.ds-destination:focus-visible{outline:1px solid var(--color-accent);outline-offset:3px}.ds-destination:disabled{color:var(--color-muted);cursor:default}.ds-destination:disabled .ds-destination-name,.ds-destination:disabled .ds-destination-icon{color:var(--color-muted)}@media(max-width:440px){.ds-destination{grid-template-columns:28px minmax(0,1fr);padding:14px 10px;gap:0 10px}.ds-destination-icon{width:28px;height:28px}.ds-destination-name{font-size:14px}.ds-destination-status{font-size:11px}}@media(max-height:420px){.ds-destination{display:flex;flex-direction:column;gap:4px;padding:10px 8px;text-align:center}}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Candlelit Boot Screen",
+    "overview": "An original candle, an original bitmap Home wordmark, strict proportional book typography, and direct text controls form a compact game screen. Three palettes share flat geometry. The fixed viewport surrounds illustrated reading, selected Docs topics, and a themed glyph map.",
+    "keyCharacteristics": [
+      "Dark, Nord, and Solarized Light palettes.",
+      "Proportional Libre Baskerville UI and reading, an inline bitmap Home wordmark, and the approved candle asset.",
+      "Fixed viewport with paginated illustrated Lore, phase-based Roadmap, and topic-based Docs.",
+      "Flat controls and visible keyboard states."
+    ],
+    "rules": [
+      {
+        "name": "The Shared Palette Rule",
+        "body": "Theme changes update both interface and map through CSS tokens.",
+        "section": "colors"
+      },
+      {
+        "name": "The Proportional Type Rule",
+        "body": "Website text, code, UI, and map glyphs share the proportional book family. Only the Home wordmark uses bitmap/character-art lettering; this rule does not alter the user's terminal font.",
+        "section": "typography"
+      }
+    ],
+    "dos": [
+      "Do share palette tokens with the demo.",
+      "Do keep topic and chapter controls outside the scrolling article.",
+      "Do preserve semantic title text and keyboard states.",
+      "Do display the complete Lore painting above its passage at every viewport."
+    ],
+    "donts": [
+      "Don't extend bitmap or character-art lettering beyond the Home wordmark.",
+      "Don't add outer page scrolling or animated transitions.",
+      "Don't apply this specification to the native game."
+    ]
+  }
+}

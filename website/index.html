@@ -1,0 +1,364 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#090b0e">
+        <meta name="description"
+            content="A mining adventure in your terminal. Explore DiggerChain, read the story, follow the milestones, and try the browser demo.">
+        <title>DiggerChain - A Terminal Mining Adventure</title>
+        <link rel="icon" type="image/png" href="./assets/candle.png">
+        <link rel="preload" href="./assets/fonts/libre-baskerville.woff2"
+            as="font"
+            type="font/woff2" crossorigin>
+        <script src="./theme.js"></script>
+        <link rel="stylesheet" href="./site.css">
+        <script type="module" src="./app.js"></script>
+    </head>
+    <body>
+        <a class="skip-link" href="#main">Skip to content</a>
+        <noscript><p class="noscript">Enable JavaScript for screen navigation. <a href="./docs.md">Read the plain-text guide.</a></p></noscript>
+        <header class="site-toolbar">
+            <a class="site-mark" href="#home"
+                aria-label="DiggerChain home"><img src="./assets/candle.png" alt="" width="48" height="48"></a>
+            <div class="theme-switcher" role="group" aria-label="Color theme">
+                <button type="button" data-theme-choice="dark"
+                    aria-pressed="true">Dark</button>
+                <button type="button" data-theme-choice="nord"
+                    aria-pressed="false">Nord</button>
+                <button type="button" data-theme-choice="solar"
+                    aria-pressed="false" aria-label="Solarized Light"
+                    title="Solarized Light">Solar</button>
+            </div>
+        </header>
+        <main id="main" tabindex="-1">
+            <section id="home" class="boot-screen" data-page
+                aria-label="DiggerChain title screen">
+                <div class="home-content">
+                    <h1 class="wordmark" tabindex="-1"
+                        aria-label="DiggerChain">{{ WORDMARK }}</h1>
+                    <img class="candle" src="./assets/candle.png"
+                        alt="A candle burning in a dark metal holder"
+                        width="800"
+                        height="800" fetchpriority="high">
+                    <p class="tagline">A mining adventure in your terminal.</p>
+                    <div class="boot-menu" role="navigation"
+                        aria-label="Start exploring">
+                        <a class="command selected"
+                            href="#demo"><span class="command-cursor" aria-hidden="true">&gt;</span>Play demo</a>
+                        <a class="command"
+                            href="#docs/download"
+                            aria-label="Download instructions"><span class="command-cursor" aria-hidden="true">&gt;</span>Download</a>
+                        <a class="command"
+                            href="#docs"><span class="command-cursor" aria-hidden="true">&gt;</span>Read docs</a>
+                    </div>
+                    <div class="token-strip"
+                        aria-label="DCG token contract address">
+                        <div
+                            class="contract-line"><span class="contract-label">CA</span><code data-token-address>{{ TOKEN_ADDRESS }}</code><button type="button" data-copy-ca {{ COPY_DISABLED }} aria-label="Copy DCG contract address">Copy</button></div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="docs" class="page docs-page" data-page hidden
+                aria-labelledby="docs-heading">
+                <a class="back-link" href="#home">&lt; Title screen</a>
+                <header class="page-heading">
+                    <h1 id="docs-heading" tabindex="-1">The delver's guide</h1>
+                </header>
+                <div class="guide-layout">
+                    <nav class="guide-index" aria-label="Guide topics">
+                        <a
+                            href="#docs/start"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#book"/></svg><span>Start here</span></a>
+                        <a
+                            href="#docs/download"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#download"/></svg><span>Get the game</span></a>
+                        <a
+                            href="#docs/controls"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#controls"/></svg><span>Controls</span></a>
+                        <a
+                            href="#docs/charge"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#pickaxe"/></svg><span>Digging &amp; charge</span></a>
+                        <a
+                            href="#docs/depths"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#crystal"/></svg><span>Crystals &amp; depths</span></a>
+                        <a
+                            href="#docs/saves"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#save"/></svg><span>Saving &amp; finishing</span></a>
+                        <a
+                            href="#docs/agents"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#robot"/></svg><span>Play with an agent</span></a>
+                        <a
+                            href="#docs/token"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#token"/></svg><span>The $DCG token</span></a>
+                        <a
+                            href="#docs/rewards"><svg class="chapter-icon" viewBox="0 0 24 24" aria-hidden="true"><use href="./assets/icons.svg#reward"/></svg><span>About rewards</span></a>
+                    </nav>
+                    <div class="guide-reader">
+                        <label class="topic-select-label"
+                            for="doc-topic">Topic<select id="doc-topic" aria-label="Choose a guide topic"><option value="start">Start here</option></select></label>
+                        <div class="guide-copy" id="guide-article" role="region"
+                            aria-label="Selected guide topic" tabindex="0">
+                            <section id="start" aria-labelledby="start-heading">
+                                <h2 id="start-heading">A way into the dark</h2>
+                                <p>DiggerChain is a game for your terminal. You are a human delver exploring a castle hidden beneath a forest. Break through veins of rock, gather crystals, and look for a portal to the floor below.</p>
+                                <p>The alpha expedition has three floors and a limit of 512 successful actions. There is no timer rushing you. You can return to earlier floors, and the things you collect stay collected. The seemingly endless castle belongs to the <a href="#lore">story</a>; these are the current playable limits.</p>
+                                <p>Want to get a feel for it? <a href="#demo">Play the browser demo.</a> It uses the same expedition rules, with a browser view. It is practice only, without a wallet or rewards.</p>
+                            </section>
+                            <section id="download"
+                                aria-labelledby="download-heading">
+                                <h2
+                                    id="download-heading">Get the terminal game</h2>
+                                <p>Choose your platform below. The current local Linux build needs a recent system, such as Ubuntu 24.04 or compatible. Broader compatibility is not yet confirmed.</p>
+                                {{DOWNLOADS}}
+                                <p>Extract the ZIP and open a terminal in that folder. On Linux or macOS, run:</p>
+                                <pre><code>chmod +x diggerchain
+./diggerchain</code></pre>
+                                <p>On Windows, run <code>.\diggerchain.exe</code> in PowerShell. Use a terminal with full color and at least 90 columns by 30 rows. You do not need Rust, Node.js, a wallet, or an internet connection to play the downloaded game.</p>
+                            </section>
+                            <section id="controls"
+                                aria-labelledby="controls-heading">
+                                <h2
+                                    id="controls-heading">Your hands remember</h2>
+                                <dl class="controls-list">
+                                    <div>
+                                        <dt><kbd>↑</kbd> <kbd>←</kbd> <kbd>↓</kbd> <kbd>→</kbd></dt>
+                                        <dd>Move. WASD and HJKL work too. Bump into a vein to dig; move again to step through.</dd>
+                                    </div>
+                                    <div>
+                                        <dt><kbd>E</kbd></dt>
+                                        <dd>Use the flask or portal you are standing on.</dd>
+                                    </div>
+                                    <div>
+                                        <dt><kbd>G</kbd></dt>
+                                        <dd>Switch between colored glyphs and the sprite view in the terminal game.</dd>
+                                    </div>
+                                    <div>
+                                        <dt><kbd>Z</kbd> / <kbd>X</kbd></dt>
+                                        <dd>Change the sprite-view zoom.</dd>
+                                    </div>
+                                    <div>
+                                        <dt><kbd>?</kbd></dt>
+                                        <dd>Open the in-game help.</dd>
+                                    </div>
+                                    <div>
+                                        <dt><kbd>Q</kbd></dt>
+                                        <dd>Save and leave. Run the game again to continue.</dd>
+                                    </div>
+                                    <div>
+                                        <dt><kbd>F</kbd></dt>
+                                        <dd>Finish this expedition at its current score. This closes the attempt; use Q if you want to continue later.</dd>
+                                    </div>
+                                </dl>
+                                <p>The browser demo supports movement, E, and F, plus on-screen controls. G, zoom, and persistent saves belong to the terminal game.</p>
+                            </section>
+                            <section id="charge"
+                                aria-labelledby="charge-heading">
+                                <h2
+                                    id="charge-heading">Spend your charge wisely</h2>
+                                <p>You start with 8 charge and can carry up to 12. Soft rock costs 2 to break; hard rock costs 3. Ordinary walls cannot be mined.</p>
+                                <p>A flask restores up to 8 charge. Stand on it and press E. A used flask is gone for that expedition, even if you leave the floor and come back. At full charge, the flask stays available.</p>
+                                <p>Walking and using portals cost no charge. If you run empty, retrace your steps and look for an unused flask. Waiting does not refill anything.</p>
+                            </section>
+                            <section id="depths"
+                                aria-labelledby="depths-heading">
+                                <h2 id="depths-heading">The deeper light</h2>
+                                <p>Walk onto a crystal to collect it. A crystal on the first floor is worth 1 score, the second floor 4, and the third floor 16. Deeper crystals are scarcer.</p>
+                                <p>Find a downward portal and press E to descend. The upward portal takes you back. There is no requirement to clear a floor or collect every crystal before leaving.</p>
+                                <p>A seed determines the expedition: rock hardness, some passages, and crystal positions vary inside the current chamber layout. The first release uses one castle setting. More varied layouts, biomes, and deeper expeditions are future work.</p>
+                                <p>Unexplored areas stay dark. Finding the passage is part of the expedition.</p>
+                            </section>
+                            <section id="saves" aria-labelledby="saves-heading">
+                                <h2 id="saves-heading">Leave a way back</h2>
+                                <p>The terminal game saves every successful action. Press Q and launch it again to continue the same expedition. Your mined passages, remaining charge, and collected items are kept.</p>
+                                <p>Press F when you are ready to finish. You can finish before reaching the deepest floor. To start a fresh expedition afterward:</p>
+                                <pre><code>./diggerchain --new</code></pre>
+                                <p>The previous save is archived. For a repeatable practice world, choose a seed:</p>
+                                <pre><code>./diggerchain --new --seed 42</code></pre>
+                                <p>An explicit seed creates a repeatable practice attempt. Alpha does not pay tokens. Native saves belong to your user account's application-data folder. Back them up privately: a save contains your expedition's secret. Do not post it in a public issue.</p>
+                                <p>The browser demo lasts while this page stays open. Switching site sections keeps the attempt; reloading the page or choosing New descent starts over.</p>
+                            </section>
+                            <section id="agents"
+                                aria-labelledby="agents-heading">
+                                <h2
+                                    id="agents-heading">Give your agent a lantern</h2>
+                                <p>An external agent can play the downloaded game through its text interface. Start it with:</p>
+                                <pre><code>./diggerchain --headless</code></pre>
+                                <p>The game accepts one command per line and replies with JSON. Your agent can look around, move, dig, use flasks, travel through portals, save, and finish. Movement and digging are separate commands in this mode.</p>
+                                <p>Bring your own agent and its model connection. DiggerChain does not include an AI subscription or ask for your AI account credentials. Headless play follows the same rules as manual play.</p>
+                            </section>
+                            <section id="token" aria-labelledby="token-heading">
+                                <h2 id="token-heading">The $DCG token</h2>
+                                <p>$DCG is the planned DiggerChain token on Robinhood Chain, network ID 4663. Its launch on PonsFamily is planned alongside the game.</p>
+                                <div
+                                    class="docs-contract"><span>Official contract address</span><code data-token-address>{{ TOKEN_ADDRESS }}</code><button class="text-action" type="button" data-copy-ca {{ COPY_DISABLED }}>Copy address</button></div>
+                                <p>The official project links will appear on the <a href="#links">Links screen</a>. Until they are ready, those buttons say Coming Soon.</p>
+                                <p>The token launch and gameplay rewards are separate milestones. Alpha opens alongside the planned token launch. Direct $DCG and RWA-token rewards are planned for the full release in Phase III. A browser-demo score is practice, not a token balance.</p>
+                            </section>
+                            <section id="rewards"
+                                aria-labelledby="rewards-heading">
+                                <h2
+                                    id="rewards-heading">From alpha to rewards</h2>
+                                <p>Alpha is for playing and exploring. It has no direct $DCG or RWA-token payouts. Your crystal score is a game result, not a token balance or an active points balance.</p>
+                                <p>Phase II brings the planned beta points system for a future airdrop. More details will arrive with that phase.</p>
+                                <p>Direct $DCG rewards together with supported RWA-token fractions are planned for Phase III, the full release. NVDA, AAPL and MSFT are examples of intended token integrations; supported assets and access still need to be confirmed.</p>
+                                <p>You can play the native game offline. No wallet or reward submission is required for ordinary alpha play. Earlier proof and testnet experiments remain development work, not a live alpha claim flow.</p>
+                                <p>Follow the <a href="#roadmap">five milestones</a> for the direction ahead. Keep saves private and wallet spending keys in your wallet. The browser demo remains practice only.</p>
+                            </section>
+                        </div>
+                        <nav class="guide-pagination"
+                            aria-label="Guide chapter navigation"><button id="doc-prev" type="button">&lt; Previous</button><span id="doc-counter" aria-live="polite">1 / 9</span><button id="doc-next" type="button">Next &gt;</button></nav>
+                    </div>
+                </div>
+            </section>
+
+            <section id="demo" class="page demo-page" data-page hidden
+                aria-labelledby="demo-heading">
+                <a class="back-link" href="#home">&lt; Title screen</a>
+                <header class="page-heading">
+                    <h1 id="demo-heading" tabindex="-1">Beneath the forest</h1>
+                </header>
+                <div class="demo-layout">
+                    <div class="expedition-panel">
+                        <dl class="game-stats" aria-label="Expedition status">
+                            <div>
+                                <dt>Depth</dt>
+                                <dd id="stat-depth">— / 3</dd>
+                            </div>
+                            <div>
+                                <dt>Charge</dt>
+                                <dd id="stat-charge">— / 12</dd>
+                            </div>
+                            <div>
+                                <dt>Score</dt>
+                                <dd id="stat-score">0</dd>
+                            </div>
+                            <div>
+                                <dt>Actions</dt>
+                                <dd id="stat-turns">0 / 512</dd>
+                            </div>
+                        </dl>
+                        <div class="map-frame">
+                            <div id="demo-entry" class="demo-entry">
+                                <pre class="entrance-art"
+                                    aria-hidden="true">      .     .
+   .  |     |  .
+   |__|_____|__|
+   |  .-----.  |
+   |  |     |  |
+___|__|     |__|___</pre>
+                                <p>The passage is waiting.</p>
+                                <button id="start-demo" class="text-action"
+                                    type="button">&gt; Enter the castle</button>
+                            </div>
+                            <canvas id="game-map" width="760" height="520"
+                                tabindex="0" hidden role="img"
+                                aria-label="Castle map. Use arrow keys to move and dig; E uses a flask or portal."
+                                aria-describedby="demo-help demo-message"></canvas>
+                        </div>
+                        <p id="demo-message" class="game-message" role="status"
+                            aria-live="polite">No wallet. No rewards. Just the way down.</p>
+                    </div>
+                    <aside class="demo-tools"
+                        aria-label="Demo controls and map key">
+                        <div id="demo-help" class="demo-help">
+                            <h2>Controls</h2>
+                            <p><kbd>Arrows / WASD / HJKL</kbd><br>Bump to dig. <kbd>E</kbd> to use.<br><kbd>F</kbd> to finish.</p>
+                        </div>
+                        <div class="touch-controls" role="group"
+                            aria-label="Move, dig, and interact">
+                            <button type="button" data-action="north"
+                                class="move-north"
+                                aria-label="Move or dig north"
+                                disabled>↑</button>
+                            <button type="button" data-action="west"
+                                class="move-west" aria-label="Move or dig west"
+                                disabled>←</button>
+                            <button type="button" data-action="interact"
+                                class="move-use"
+                                aria-label="Use flask or portal"
+                                disabled>E</button>
+                            <button type="button" data-action="east"
+                                class="move-east" aria-label="Move or dig east"
+                                disabled>→</button>
+                            <button type="button" data-action="south"
+                                class="move-south"
+                                aria-label="Move or dig south"
+                                disabled>↓</button>
+                        </div>
+                        <dl class="map-key">
+                            <div>
+                                <dt class="glyph-player">@</dt>
+                                <dd>You, the delver</dd>
+                            </div>
+                            <div>
+                                <dt class="glyph-crystal">*</dt>
+                                <dd>Crystal</dd>
+                            </div>
+                            <div>
+                                <dt class="glyph-flask">F</dt>
+                                <dd>Refill flask</dd>
+                            </div>
+                            <div>
+                                <dt class="glyph-rock">r / R</dt>
+                                <dd>Soft / hard vein</dd>
+                            </div>
+                            <div>
+                                <dt class="glyph-portal">&lt; / &gt;</dt>
+                                <dd>Up / down portal</dd>
+                            </div>
+                        </dl>
+                        <div class="demo-actions">
+                            <button id="finish-demo" type="button"
+                                class="text-action"
+                                disabled>Finish <span class="key-hint">[F]</span></button>
+                            <button id="restart-demo" type="button"
+                                class="text-action"
+                                disabled>New descent</button>
+                        </div>
+                    </aside>
+                </div>
+                <p
+                    class="demo-note">Same expedition rules as the terminal game. Browser view, temporary progress. <a href="#docs">Read the guide.</a></p>
+            </section>
+
+            <section id="links" class="page links-page" data-page hidden
+                aria-labelledby="links-heading">
+                <header class="page-heading">
+                    <h1 id="links-heading" tabindex="-1">Stay in the light</h1>
+                </header>
+                <div class="link-menu"
+                    aria-label="Project destinations">{{ PROJECT_LINKS }}</div>
+            </section>
+
+            <section id="lore" class="page lore-page" data-page hidden
+                aria-labelledby="lore-heading">
+                <header class="page-heading">
+                    <h1 id="lore-heading"
+                        tabindex="-1">The stone beneath the orchard</h1>
+                </header>
+                <div class="book-pages">{{ LORE_PAGES }}</div>
+                <nav class="reader-pagination"
+                    aria-label="Lore page navigation"><button type="button" data-reader-prev>&lt; Previous</button><span data-reader-counter aria-live="polite">1 / 8</span><button type="button" data-reader-next>Next &gt;</button></nav>
+            </section>
+
+            <section id="roadmap" class="page roadmap-page" data-page hidden
+                aria-labelledby="roadmap-heading">
+                <header class="page-heading">
+                    <h1 id="roadmap-heading"
+                        tabindex="-1">The descent ahead</h1>
+                </header>
+                <div class="roadmap-layout">
+                    <nav class="phase-nav"
+                        aria-label="Roadmap phases">{{ PHASE_NAV }}</nav>
+                    <div class="phase-pages">{{ PHASE_PAGES }}</div>
+                </div>
+                <nav class="reader-pagination"
+                    aria-label="Roadmap phase navigation"><button type="button" data-reader-prev>&lt; Previous</button><span data-reader-counter aria-live="polite">1 / 5</span><button type="button" data-reader-next>Next &gt;</button></nav>
+            </section>
+        </main>
+        <footer class="site-footer">
+            <nav aria-label="Main navigation">
+                <a href="#home" aria-current="page">Home</a>
+                <a href="#lore">Lore</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#docs">Docs</a>
+                <a href="#demo">Demo</a>
+                <a href="#links">Links</a>
+            </nav>
+        </footer>
+    </body>
+</html>

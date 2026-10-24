@@ -1,0 +1,127 @@
+{
+  "scheme": "groth16-bn254-reward-v1",
+  "chain_id": 46630,
+  "account": "0x87660e6337efb749a3a6de321f9d38ad587ed8fc",
+  "participants": [
+    "0x87660e6337efb749a3a6de321f9d38ad587ed8fc"
+  ],
+  "verifying_key_sha256": "316079b08bd7796cf2638546d4eb0a74433fe0c884bcf7fa484cee830ccf6171",
+  "manifest_sha256": "9ed61ef2430b05f53a25e1fd7c108f9ffe1233b7f412e0d0a326878abe85c254",
+  "transactions": [
+    {
+      "kind": "verifier_deployment",
+      "hash": "0xfc375c612f7a3dcc202980ea28b21abd2a5fb5c2c781c8cd813a71a348b0f222",
+      "from": "0x87660e6337efb749a3a6de321f9d38ad587ed8fc",
+      "receipt": {
+        "blockHash": "0x1270774b8d5126d1b25f56d72360fd0423469e3a61fce5bc8e5390f93ee97b3a",
+        "blockNumber": "0x85c142f",
+        "contractAddress": "0x45f4e6c42e8a71d495d5f23793ad949a081d7364",
+        "cumulativeGasUsed": "0xac056",
+        "effectiveGasPrice": "0x989680",
+        "from": "0x87660e6337efb749a3a6de321f9d38ad587ed8fc",
+        "gasUsed": "0xac056",
+        "gasUsedForL1": "0x0",
+        "l1BlockNumber": "0xb68f42",
+        "logs": [],
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+        "status": "0x1",
+        "to": null,
+        "transactionHash": "0xfc375c612f7a3dcc202980ea28b21abd2a5fb5c2c781c8cd813a71a348b0f222",
+        "transactionIndex": "0x1",
+        "type": "0x0"
+      }
+    },
+    {
+      "kind": "rewards_deployment",
+      "hash": "0x8d69add2f233329b90fa168a73926a7994efe108b23fc23a3c91da11e6169124",
+      "from": "0x87660e6337efb749a3a6de321f9d38ad587ed8fc",
+      "receipt": {
+        "blockHash": "0x46a1884fdb6a8fe897e6818aebc35df439e620f22923a5445b738ee7f10cb949",
+        "blockNumber": "0x85c1487",
+        "contractAddress": "0x7fb642e5afc33696daf0481401f0927abec309ad",
+        "cumulativeGasUsed": "0x13f41a",
+        "effectiveGasPrice": "0x989680",
+        "from": "0x87660e6337efb749a3a6de321f9d38ad587ed8fc",
+        "gasUsed": "0x118e49",
+        "gasUsedForL1": "0x0",
+        "l1BlockNumber": "0xb68f44",
+        "logs": [
+          {
+            "address": "0x7fb642e5afc33696daf0481401f0927abec309ad",
+            "topics": [
+              "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+              "0x0000000000000000000000000000000000000000000000000000000000000000",
+              "0x0000000000000000000000007fb642e5afc33696daf0481401f0927abec309ad"
+            ],
+            "data": "0x0000000000000000000000000000000000000000000001b1ae4d6e2ef5000000",
+            "blockNumber": "0x85c1487",
+            "transactionHash": "0x8d69add2f233329b90fa168a73926a7994efe108b23fc23a3c91da11e6169124",
+            "transactionIndex": "0x2",
+            "blockHash": "0x46a1884fdb6a8fe897e6818aebc35df439e620f22923a5445b738ee7f10cb949",
+            "blockTimestamp": "0x6ad905c0",
+            "logIndex": "0x3",
+            "removed": false
+          }
+        ],
+        "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000020000000000000000000800000000000000000000000010000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000002000080000000000000000000000000000000000000000000000020000000000000000000000000000000000000000000000000000000202000000000",
+        "status": "0x1",
+        "to": null,
+        "transactionHash": "0x8d69add2f233329b90fa168a73926a7994efe108b23fc23a3c91da11e6169124",
+        "transactionIndex": "0x2",
+        "type": "0x0"
+      }
+    }
+  ],
+  "verifier_address": "0x45f4e6c42e8a71d495d5f23793ad949a081d7364",
+  "rewards_address": "0x7fb642e5afc33696daf0481401f0927abec309ad",
+  "configuration": {
+    "name": "DiggerChain Test",
+    "symbol": "DCTEST",
+    "duration": "300",
+    "count": "8",
+    "budget": "1000000000000000000000",
+    "startDelay": "60",
+    "startsAt": "1792607740"
+  },
+  "errors": [
+    {
+      "message": "No epoch is open. Refresh after the start, or use a later deployment.",
+      "time": "2026-10-21T18:34:54.011Z"
+    },
+    {
+      "message": "The proof epoch is no longer open. Prepare a new context and prove the same unsubmitted save again.",
+      "time": "2026-10-21T18:45:47.307Z"
+    },
+    {
+      "message": "RPC Request failed.\n\nURL: https://rpc.testnet.chain.robinhood.com/rpc\nRequest body: {\"method\":\"eth_estimateGas\",\"params\":[{\"to\":\"0x7fb642e5afc33696daf0481401f0927abec309ad\",\"data\":\"0x379607f50000000000000000000000000000000000000000000000000000000000000001\",\"from\":\"0x87660e6337efb749a3a6de321f9d38ad587ed8fc\",\"chainId\":\"0xb626\",\"value\":\"0x0\"}]}\n\nDetails: execution reverted\nVersion: viem@2.47.6",
+      "time": "2026-10-21T18:45:58.780Z"
+    }
+  ],
+  "real_proof_accepted": true,
+  "altered_score_rejected": true,
+  "public_inputs": [
+    "2",
+    "3126721772815820551",
+    "46630",
+    "1",
+    "57677836332828860764551353484922837096",
+    "1",
+    "5",
+    "0",
+    "7",
+    "5",
+    "11",
+    "312201767248301924610700356336179021887",
+    "772989683405778045380893318562038796031952345340",
+    "729106391089922218412431341688923171340475894189"
+  ],
+  "epoch_checks": [
+    {
+      "epoch": "1",
+      "player": "0x87660e6337efb749a3a6de321f9d38ad587ed8fc",
+      "claimable": "0",
+      "player_score": "0",
+      "total_score": "0"
+    }
+  ]
+}

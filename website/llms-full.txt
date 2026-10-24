@@ -1,0 +1,57 @@
+# DiggerChain — complete website context
+
+> A mining adventure in your terminal. DiggerChain is an English exploration and mining game with offline native play and a practice-only browser demo.
+
+## Current scope and availability
+
+The player is a human delver. An expedition has three floors, a 19-by-13 cell map on each floor, and a cap of 512 successful actions. There are no enemies or combat in this launch expedition. The castle uses a fixed chamber layout with seeded variation in veins, some passages, and crystal placement/presence. Unlimited depth, additional settings, and biomes are future work, not current capabilities. Previously mined passages and collected items persist across floor revisits.
+
+The website is static, with no project-operated backend, account system, analytics, or wallet connection. Navigation is Home, Lore, Roadmap, Docs, Demo, and Links. Lore is an eight-page illustrated book with artwork above text; Roadmap is a five-phase reader without dates. Dark, Nord, and Solarized Light palettes can be selected on every screen. UI and reading use proportional book typography; the Home title is inline bitmap lettering. Home's Download command opens the download guide rather than fetching an archive immediately. Docs has a fixed topic selector and a separately scrollable reading pane; the site itself stays inside the viewport.
+
+{{DOWNLOADS}}
+
+The current local Linux build requires glibc 2.39 or newer; broad distribution compatibility is not confirmed. A compiler is not required to run an extracted native binary. Platform build availability and runtime acceptance are separate.
+
+## $DCG and official destinations
+
+Symbol: $DCG. Network: Robinhood Chain mainnet, chain ID 4663. The token launch on PonsFamily is planned alongside the game. Contract address: {{TOKEN_ADDRESS}}
+
+{{EXTERNAL_LINKS}}
+
+Missing addresses and links are intentionally Coming Soon. Do not infer a CA from a wallet address, a testnet contract, another token with the same symbol, or a launchpad factory. A token launch does not by itself activate gameplay rewards. Reward-flow availability is described in the guide below. The website never asks an agent for wallet spending keys or AI account credentials.
+
+Alpha and beta have no direct $DCG or RWA-token payouts. Phase II is planned to introduce points for a future airdrop. A native crystal score is not an active points balance. Direct $DCG and supported RWA-token fractions are planned for Phase III. NVDA, AAPL and MSFT are intended examples, not confirmed live integrations. Exchange listings and a potential L3 on Robinhood Chain are later milestones, with the network architecture still research work.
+
+## Browser demo
+
+Open ./index.html#demo and choose Enter the castle. The browser adapter calls the same Rust expedition rules through WebAssembly. Presentation uses top-down colored glyphs and fog of war, without camera shake or a reveal action. Arrow keys, WASD, and HJKL move and bump-dig. E uses a flask or portal underfoot. F finishes the attempt. On-screen buttons provide the same actions. Browser progress stays while navigating the site but is lost on reload or New descent. No browser score qualifies for rewards; no wallet, proof, or token claim is available inside this demo.
+
+## External-agent interface
+
+Launch the installed native executable as `./diggerchain --headless`. The game writes an initial observation immediately. Send a plain text command followed by a newline on stdin; receive one JSON object followed by a newline on stdout. Input is command text, not JSON. Do not send escape sequences or use the browser demo as the native agent protocol.
+
+Supported commands: look, north, south, west, east, dig-north, dig-south, dig-west, dig-east, interact, portal, wait, save, finish, quit.
+
+Movement and digging are separate actions in headless mode. Unlike the human keyboard adapter, `east` does not automatically dig an adjacent vein. `interact` consumes a flask underfoot; `portal` travels when standing on a portal. Check `legal_actions` in each observation instead of assuming a move is allowed. `look` and invalid commands do not advance simulation time. Failed actions do not consume charge or change the map. `quit` emits a goodbye object and exits.
+
+Observations contain ok, type, game, mode, rules_version, seed, expedition_id, practice, finished, turn, max_actions, floor, floors, position, score, charge, capacity, standing_on, legal_actions, map, objects, map_legend, and messages. Failures also include error. Native floor numbers and positions are zero-based; the human UI displays depths starting at one. Unknown cells are `?`, the player is `@`, rock/wall or remembered rock is `#`, ground is `.`, soft vein is `r`, hard vein is `R`, crystal is `C`, flask is `F`, up portal is `<`, and down portal is `>`. Visible objects include x, y, kind, and dig_cost. Hidden crystals and the expedition secret are not disclosed in observations.
+
+Headless and manual native play share the same saves and rules. Use `--save PATH` to select a private save file. `--new` starts an attempt and archives the previous save. `--seed N` selects a practice world; it has no reward identity. F/finish seals an attempt. Q/quit leaves it resumable. An external agent supplies its own model connection; no AI account integration or swarm controller is built into DiggerChain.
+
+## Player guide
+
+{{GUIDE}}
+
+## Story
+
+{{LORE}}
+
+## Development milestones
+
+{{ROADMAP}}
+
+## Release evidence and boundaries
+
+The repository records native, constraint, and contract checks, a saved-game proof, and Robinhood Chain testnet deployments. A complete payout and Windows/macOS builds remain unconfirmed. The maintainer deferred further tests to accelerate launch. Website builds and static source checks do not establish browser fidelity or end-to-end settlement. No claim of guaranteed earnings, human-only play, or comprehensive audit is made.
+
+The preserved authored goblin playground remains available in the native game through `--prototype`. Normal native launch is the human expedition. The website demo is the bounded expedition rather than that authored playground.

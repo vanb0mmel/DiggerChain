@@ -1,0 +1,37 @@
+{
+    "token": {
+        "symbol": "DCG",
+        "chainId": 4663,
+        "contractAddress": null
+    },
+    "links": {
+        "x": null,
+        "ponsFamily": null,
+        "github": "https://github.com/vanb0mmel/DiggerChain"
+    },
+    "release": {
+        "version": "0.1.0-alpha.1",
+        "downloads": [
+            {
+                "platform": "Linux x86-64",
+                "url": "./downloads/diggerchain-linux-alpha.zip",
+                "checksum": "./downloads/diggerchain-linux-alpha.zip.sha256"
+            },
+            {
+                "platform": "Windows x86-64",
+                "url": null,
+                "checksum": null
+            },
+            {
+                "platform": "macOS Apple silicon",
+                "url": null,
+                "checksum": null
+            },
+            {
+                "platform": "macOS Intel",
+                "url": null,
+                "checksum": null
+            }
+        ]
+    }
+}

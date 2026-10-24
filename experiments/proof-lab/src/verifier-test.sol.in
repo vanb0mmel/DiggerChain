@@ -1,0 +1,50 @@
+// SPDX-License-Identifier: MIT
+pragma solidity 0.8.28;
+
+import {Verifier} from "../src/Verifier.sol";
+
+contract VerifierTest {
+    event log_named_uint(string name, uint256 value);
+
+    function fixture() private pure returns (uint256[8] memory, uint256[11] memory) {
+        uint256[8] memory proof = [{{PROOF}}];
+        uint256[11] memory inputs = [{{INPUTS}}];
+        return (proof, inputs);
+    }
+
+    function testValidProofAndCallGas() public {
+        Verifier verifier = new Verifier();
+        (uint256[8] memory proof, uint256[11] memory inputs) = fixture();
+        uint256 beforeCall = gasleft();
+        bool accepted = verifier.verify(proof, inputs);
+        uint256 callGas = beforeCall - gasleft();
+        assert(accepted);
+        emit log_named_uint("verifier_call_gas_excluding_deployment", callGas);
+    }
+
+    function testEveryAlteredPublicInputIsRejected() public {
+        Verifier verifier = new Verifier();
+        (uint256[8] memory proof, uint256[11] memory inputs) = fixture();
+        for (uint256 i = 0; i < 11; ++i) {
+            ++inputs[i];
+            assert(!verifier.verify(proof, inputs));
+            --inputs[i];
+        }
+    }
+
+    function testNoncanonicalScalarIsRejected() public {
+        Verifier verifier = new Verifier();
+        (uint256[8] memory proof, uint256[11] memory inputs) = fixture();
+        inputs[5] +=
+            21888242871839275222246405745257275088548364400416034343698204186575808495617;
+        assert(!verifier.verify(proof, inputs));
+    }
+
+    function testNoncanonicalProofCoordinateIsRejected() public {
+        Verifier verifier = new Verifier();
+        (uint256[8] memory proof, uint256[11] memory inputs) = fixture();
+        proof[0] =
+            21888242871839275222246405745257275088696311157297823662689037894645226208583;
+        assert(!verifier.verify(proof, inputs));
+    }
+}

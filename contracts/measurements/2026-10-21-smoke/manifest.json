@@ -1,0 +1,32 @@
+{
+  "circuit_sha256": "81a7205352abeb6804bcfbdb1a716dadf761e32793c8e14bb769300b01002ddd",
+  "format_version": 1,
+  "max_actions": 512,
+  "proving_key_bytes": 93568400,
+  "proving_key_sha256": "1684e2ea5af51ca9c65fcf9f14f310af4fb4b4b33f903cd28434bd8188e92237",
+  "public_input_names": [
+    "rules_version",
+    "seed",
+    "chain_id",
+    "epoch",
+    "expedition_id_high",
+    "score",
+    "charge",
+    "floor",
+    "x",
+    "y",
+    "turns",
+    "expedition_id_low",
+    "recipient",
+    "settlement_contract"
+  ],
+  "rules_version": 2,
+  "scheme": "groth16-bn254-reward-v1",
+  "setup_assumption": "single_operator_trusted_setup",
+  "setup_ms": 14276,
+  "source_sha256": "d3294a819a5760c45b7866c115f511f5739c92231317bf90f546d7825306b182",
+  "status": "candidate_parameters_require_user_validation",
+  "verifier_source_sha256": "c80c2600af1f1003fe5017e419deadbab8e55e0b17d23fb039bb988219c35196",
+  "verifying_key_bytes": 712,
+  "verifying_key_sha256": "316079b08bd7796cf2638546d4eb0a74433fe0c884bcf7fa484cee830ccf6171"
+}

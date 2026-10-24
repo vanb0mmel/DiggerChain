@@ -1,0 +1,56 @@
+{
+  "candle.png": {
+    "source": "User-supplied CEO-FILES/logo.png; copied without visual modification.",
+    "sha256": "42c02a3abfe59831dfc343dda2714e1b0a6c12a86b97ae600f54037840ce83f5",
+    "metadata": "Origin embedded in PNG metadata; original CEO-FILES/logo.png remains unchanged."
+  },
+  "pons.png": {
+    "source": "https://ponsfamily.com/pons-logo.png",
+    "sha256": "7b322b9f9e39d48c4018cd24d9dca904f27a24ad4e04093da3813fc42b139f81",
+    "usage": "Official launchpad logo, displayed as an interface link."
+  },
+  "GitHub-Octicons-LICENSE.txt": {
+    "source": "https://raw.githubusercontent.com/primer/octicons/main/LICENSE",
+    "sha256": "da259c8bd0de62713ccdcf88910aebca810644f98c2c912bad814fc79ea778df"
+  },
+  "icons.svg": {
+    "source": "GitHub mark: https://github.com/primer/octicons/blob/main/icons/mark-github-16.svg. X, robot, and chapter icon geometry authored for this website.",
+    "sha256": "df354a80ac0d082c02acbd8d8212317f3f416e59fa47f3d3a5c1689ac9f584ad"
+  },
+  "libre-baskerville.woff2": {
+    "source": "https://fonts.gstatic.com/s/librebaskerville/v24/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxM.woff2",
+    "sha256": "22219fb90e3b9bd28debd1825fe8d9a0154a0e31f8b3fa601ac1a0a5aa5e6d1b"
+  },
+  "Libre-Baskerville-OFL.txt": {
+    "source": "https://raw.githubusercontent.com/google/fonts/main/ofl/librebaskerville/OFL.txt",
+    "sha256": "3624eddd4c8f8a908130a417ae7cd089c9da69899c4e0ca1a5217d0a6fae16fd"
+  },
+  "lore/01-the-stone-v2.webp": {
+    "source": "Original built-in image_gen artwork; prompts and study references: CEO-FILES/lore/2026-10-24-v2/prompts.json. Original: 01-the-stone.png in that directory.",
+    "sha256": "cedc4971e489fc87357538d5b1eb97c709af0512f61486d44b9a2f21bcd35ff0",
+    "conversion": "Full image preserved; WebP quality 85.",
+    "metadata": "01-the-stone-v2.webp.json prompt sidecar"
+  },
+  "lore/02-between-worlds-v2.webp": {
+    "source": "Original built-in image_gen artwork; prompts and study references: CEO-FILES/lore/2026-10-24-v2/prompts.json. Original: 02-between-worlds.png in that directory.",
+    "sha256": "1cf3faea0bcba26bc3b1b621db40881f0a19b6d07108c61836ba01d551468ebc",
+    "conversion": "Full image preserved; WebP quality 85.",
+    "metadata": "02-between-worlds-v2.webp.json prompt sidecar"
+  },
+  "lore/03-the-keeper-v2.webp": {
+    "source": "Original built-in image_gen artwork; prompts and study references: CEO-FILES/lore/2026-10-24-v2/prompts.json. Original: 03-the-keeper.png in that directory.",
+    "sha256": "85844a063b643cc30a0341ebb8fe0038b83ba1dc7b0580848f3bc2b7ad37a800",
+    "conversion": "Full image preserved; WebP quality 85.",
+    "metadata": "03-the-keeper-v2.webp.json prompt sidecar"
+  },
+  "lore/04-the-castle-v2.webp": {
+    "source": "Original built-in image_gen artwork; prompts and study references: CEO-FILES/lore/2026-10-24-v2/prompts.json. Original: 04-the-castle.png in that directory.",
+    "sha256": "2a65025250506fb5fac6c2a61bd62f3d12dd8957f43d4f9602e8cbaa616ae905",
+    "conversion": "Full image preserved; WebP quality 85.",
+    "metadata": "04-the-castle-v2.webp.json prompt sidecar"
+  },
+  "wordmark.svg": {
+    "source": "Original bitmap lettering and character-art texture authored for DiggerChain. Inlined at build time; theme-aware and font-independent.",
+    "sha256": "921f5601684eb4288b5619e9401a66992cb8c920ccecbc59970b8a2aec921c70"
+  }
+}

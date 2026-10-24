@@ -1,0 +1,82 @@
+{
+  "altered_public_inputs_rejected": 11,
+  "constraints_before_prover_optimization": 444095,
+  "cryptographic_proof": true,
+  "evm_verification": "not_run",
+  "experiment": "vault-v1-feasibility-groth16-bn254",
+  "max_steps": 512,
+  "memory": {
+    "peak_rss_kib_before_report": 1258676,
+    "source": "/proc/self/status:VmHWM"
+  },
+  "native_verification": "passed",
+  "production_ready": false,
+  "public_input_names": [
+    "rules_version",
+    "seed",
+    "settlement_domain",
+    "fixture_epoch",
+    "fixture_expedition_id",
+    "score",
+    "charge",
+    "floor",
+    "x",
+    "y",
+    "turns"
+  ],
+  "public_inputs_decimal": [
+    "2",
+    "0",
+    "46630",
+    "0",
+    "1",
+    "23",
+    "12",
+    "0",
+    "2",
+    "2",
+    "512"
+  ],
+  "rejected_demo_actions_omitted": 0,
+  "rejected_witness_cases": [
+    "fabricated_score",
+    "fabricated_charge",
+    "fabricated_floor",
+    "fabricated_x",
+    "fabricated_y",
+    "fabricated_turns",
+    "walk_through_generated_rock",
+    "dig_opened_generated_rock",
+    "consume_generated_flask_twice",
+    "omit_all_required_refills",
+    "unknown_action"
+  ],
+  "robinhood_testnet_verification": "not_run",
+  "round_trips": 0,
+  "seed": 0,
+  "setup": "fresh_local_experiment_only_not_a_production_ceremony",
+  "sizes_bytes": {
+    "compressed_proof": 128,
+    "compressed_proving_key_not_saved": 87177680,
+    "compressed_verifying_key": 616,
+    "evm_proof": 256,
+    "evm_static_call_data_including_selector": 612
+  },
+  "successful_actions": 512,
+  "timings_ms": {
+    "constraint_checks": 8032,
+    "native_verify_including_key_preparation": 2,
+    "prove": 5653,
+    "setup": 11948,
+    "total_before_report": 25649
+  },
+  "witness_variables_before_prover_optimization": 439989,
+  "world": {
+    "floors": 3,
+    "generation_enforced_by_circuit": true,
+    "generator": "seeded-castle-v1",
+    "height": 13,
+    "seed_bits": 64,
+    "width": 19
+  }
+}

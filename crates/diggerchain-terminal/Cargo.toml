@@ -1,0 +1,20 @@
+[package]
+name = "diggerchain-terminal"
+description = "DiggerChain's terminal renderer and line-oriented agent interface."
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "diggerchain"
+path = "src/main.rs"
+
+[dependencies]
+diggerchain-core.workspace = true
+crossterm.workspace = true
+serde_json.workspace = true
+getrandom.workspace = true
+
+[lints]
+workspace = true

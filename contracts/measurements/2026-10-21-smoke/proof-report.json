@@ -1,0 +1,52 @@
+{
+  "altered_public_inputs_rejected": 14,
+  "circuit_sha256": "81a7205352abeb6804bcfbdb1a716dadf761e32793c8e14bb769300b01002ddd",
+  "constraints": 484351,
+  "expedition_id": "2b6458e2e42aa70770160e7ed26fd868eadfdf8b91cc28cdef8d0e3bbced083f",
+  "format_version": 1,
+  "native_verification": "passed",
+  "parameter_fingerprint": "316079b08bd7796cf2638546d4eb0a74433fe0c884bcf7fa484cee830ccf6171",
+  "peak_rss_kib": 1356364,
+  "proof_tool_source_sha256": "d3294a819a5760c45b7866c115f511f5739c92231317bf90f546d7825306b182",
+  "public_input_names": [
+    "rules_version",
+    "seed",
+    "chain_id",
+    "epoch",
+    "expedition_id_high",
+    "score",
+    "charge",
+    "floor",
+    "x",
+    "y",
+    "turns",
+    "expedition_id_low",
+    "recipient",
+    "settlement_contract"
+  ],
+  "public_inputs_decimal": [
+    "2",
+    "3126721772815820551",
+    "46630",
+    "1",
+    "57677836332828860764551353484922837096",
+    "1",
+    "5",
+    "0",
+    "7",
+    "5",
+    "11",
+    "312201767248301924610700356336179021887",
+    "772989683405778045380893318562038796031952345340",
+    "729106391089922218412431341688923171340475894189"
+  ],
+  "scheme": "groth16-bn254-reward-v1",
+  "secret_exported": false,
+  "successful_actions": 11,
+  "timings_ms": {
+    "constraint_check": 2272,
+    "key_load": 46416,
+    "prove": 5858,
+    "total": 54579
+  }
+}

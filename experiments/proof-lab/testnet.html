@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DiggerChain — testnet verifier check</title>
+<style>
+  :root { color-scheme: dark; font: 16px/1.5 system-ui, sans-serif; background: #11151e; color: #e1e7ee; }
+  body { max-width: 760px; margin: 3rem auto; padding: 0 1rem; }
+  h1 { font-size: 1.5rem; } button, input { font: inherit; padding: .6rem .8rem; margin: .3rem 0; }
+  button { cursor: pointer; } button:disabled { cursor: default; opacity: .45; }
+  input { width: 100%; box-sizing: border-box; } code, pre { overflow-wrap: anywhere; white-space: pre-wrap; }
+  pre { padding: 1rem; background: #1b2230; min-height: 5rem; } .muted { color: #a1adc0; }
+</style>
+<h1>DiggerChain testnet verifier check</h1>
+<p>Robinhood Chain Testnet · chain 46630 · experiment-only verifier.</p>
+<p id="package" class="muted"></p>
+<p>Two transactions: deploy this verifier, then submit its valid proof. Both send <strong>0 ETH</strong> as value and require testnet gas. Wallet keys stay in your extension.</p>
+<button id="connect">1. Connect wallet</button>
+<p id="wallet" class="muted">No wallet connected.</p>
+<button id="deploy" disabled>2. Deploy test verifier</button>
+<label for="address">Deployed verifier address</label>
+<input id="address" placeholder="0x…" autocomplete="off" spellcheck="false">
+<button id="check" disabled>3. Check valid and altered proofs (read only)</button>
+<button id="submit" disabled>4. Submit valid verification transaction</button>
+<button id="pending" disabled>Check pending transaction</button>
+<button id="download" disabled>Download result</button>
+<pre id="log" role="status" aria-live="polite">Ready. Connect the funded testnet wallet to begin.</pre>
+<script>
+"use strict";
+const payload = {{PAYLOAD}};
+const CHAIN = "0xb626";
+const $ = id => document.getElementById(id);
+const state = { provider: null, account: null, address: null, checked: false, pending: null, busy: false };
+const report = { experiment: payload.experiment, run: payload.run, chain_id: payload.chainId,
+  proof_sha256: payload.proofSha256, runtime_sha256: payload.runtimeSha256, public_inputs: payload.publicInputs,
+  production_ready: false, testnet_verification: "not_run" };
+$("package").textContent = `${payload.experiment} · ${payload.run} · runtime SHA-256 ${payload.runtimeSha256}`;
+
+function log(message) { $("log").textContent += "\n" + message; }
+function buttons() {
+  $("connect").disabled = state.busy || !!state.pending;
+  $("deploy").disabled = state.busy || !state.account || !!state.pending;
+  $("check").disabled = state.busy || !state.account || !!state.pending;
+  $("submit").disabled = state.busy || !state.checked || !!state.pending;
+  $("pending").disabled = state.busy || !state.pending;
+  $("download").disabled = state.busy || !report.account;
+}
+async function run(operation) {
+  if (state.busy) return;
+  state.busy = true; buttons();
+  try { await operation(); }
+  catch (error) { log(`Error: ${error.message || error}`); }
+  finally { state.busy = false; buttons(); }
+}
+async function request(method, params = []) {
+  if (!state.provider) throw new Error("Connect a browser wallet first.");
+  return state.provider.request({ method, params });
+}
+async function guard() {
+  if ((await request("eth_chainId")).toLowerCase() !== CHAIN) throw new Error("Select Robinhood testnet 46630 in the wallet.");
+  const accounts = await request("eth_accounts");
+  if (!accounts[0] || accounts[0].toLowerCase() !== payload.expectedAccount.toLowerCase()) {
+    throw new Error(`Select the expected wallet: ${payload.expectedAccount}`);
+  }
+  state.account = accounts[0];
+  return accounts[0];
+}
+async function connect() {
+  state.provider = window.ethereum;
+  if (!state.provider) throw new Error("Open this page in the browser with MetaMask or Rabby enabled.");
+  await request("eth_requestAccounts");
+  try { await request("wallet_switchEthereumChain", [{ chainId: CHAIN }]); }
+  catch (error) {
+    if (error.code !== 4902) throw error;
+    await request("wallet_addEthereumChain", [{ chainId: CHAIN, chainName: "Robinhood Chain Testnet",
+      nativeCurrency: { name: "Ether", symbol: "ETH", decimals: 18 },
+      rpcUrls: ["https://rpc.testnet.chain.robinhood.com"],
+      blockExplorerUrls: ["https://explorer.testnet.chain.robinhood.com"] }]);
+  }
+  const account = await guard();
+  report.account = account;
+  $("wallet").textContent = `Connected: ${account} · testnet 46630`;
+  log("Wallet connected. No transaction has been requested.");
+}
+async function verifyCode(address) {
+  await guard();
+  if (!/^0x[0-9a-fA-F]{40}$/.test(address)) throw new Error("Enter the deployed verifier address.");
+  const code = await request("eth_getCode", [address, "latest"]);
+  if (code.toLowerCase() !== payload.runtime) throw new Error("On-chain bytecode does not match this experiment's compiled verifier.");
+}
+async function send(kind, tx) {
+  const from = await guard();
+  const transaction = { ...tx, from, chainId: CHAIN, value: "0x0" };
+  const estimate = BigInt(await request("eth_estimateGas", [transaction]));
+  if (estimate <= 0n || estimate > 5000000n) throw new Error("Unexpected gas estimate; nothing was submitted.");
+  transaction.gas = "0x" + ((estimate * 12n + 9n) / 10n).toString(16);
+  log(`${kind}: estimated ${estimate} gas. Review the transaction in your wallet.`);
+  await guard();
+  const hash = await request("eth_sendTransaction", [transaction]);
+  state.pending = { kind, hash };
+  report[`${kind}_transaction_hash`] = hash;
+  log(`Submitted: ${hash}`);
+  await pollReceipt();
+}
+async function pollReceipt() {
+  if (!state.pending) return;
+  const { kind, hash } = state.pending;
+  for (let i = 0; i < 60; ++i) {
+    await guard();
+    const receipt = await request("eth_getTransactionReceipt", [hash]);
+    if (receipt) {
+      report[`${kind}_receipt`] = receipt;
+      state.pending = null;
+      if (receipt.status !== "0x1") throw new Error(`${kind} reverted. See the saved receipt.`);
+      if (kind === "deployment") {
+        await verifyCode(receipt.contractAddress);
+        state.address = receipt.contractAddress;
+        $("address").value = state.address;
+        report.verifier_address = state.address;
+        log(`Verifier deployed: ${state.address}`);
+      } else {
+        report.testnet_verification = "passed";
+        log(`Verification transaction confirmed. gasUsed=${BigInt(receipt.gasUsed)}, effectiveGasPrice=${receipt.effectiveGasPrice || "not returned"}`);
+        log("Testnet check passed. Download the result and share it with the developer.");
+      }
+      return;
+    }
+    await new Promise(resolve => setTimeout(resolve, 2000));
+  }
+  throw new Error("Receipt is still pending. Use Check pending transaction; do not submit it again.");
+}
+function decodedBool(value) {
+  if (!/^0x[0-9a-fA-F]{64}$/.test(value) || ![0n, 1n].includes(BigInt(value))) throw new Error("Invalid verifier return data.");
+  return BigInt(value) === 1n;
+}
+async function check() {
+  state.checked = false;
+  const address = $("address").value.trim();
+  await verifyCode(address);
+  const valid = decodedBool(await request("eth_call", [{ to: address, data: payload.validData }, "latest"]));
+  const altered = decodedBool(await request("eth_call", [{ to: address, data: payload.alteredData }, "latest"]));
+  if (!valid || altered) throw new Error(`Unexpected verification results: valid=${valid}, altered=${altered}`);
+  state.address = address; state.checked = true;
+  report.verifier_address = address;
+  report.valid_proof_accepted = true;
+  report.altered_score_rejected = true;
+  report.testnet_verification = "read_only_passed";
+  log("On-chain bytecode matches. Valid proof accepted; altered score rejected. Read-only checks passed.");
+}
+$("connect").onclick = () => run(connect);
+$("deploy").onclick = () => run(() => send("deployment", { data: payload.creation }));
+$("check").onclick = () => run(check);
+$("submit").onclick = () => run(async () => {
+  await check();
+  await send("verification", { to: state.address, data: payload.validData });
+});
+$("pending").onclick = () => run(pollReceipt);
+$("address").oninput = () => { state.checked = false; buttons(); };
+$("download").onclick = () => {
+  const blob = new Blob([JSON.stringify(report, null, 2) + "\n"], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement("a");
+  link.href = url; link.download = `diggerchain-testnet-${payload.run}.json`; link.click();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+};
+buttons();
+</script>
+</html>
